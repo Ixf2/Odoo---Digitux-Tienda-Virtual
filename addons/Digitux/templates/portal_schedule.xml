@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Plantilla pública del horario semanal.
+        Hereda del layout base de website para tener cabecera y pie.
+    -->
+    <template id="portal_schedule_public" name="Horario Semanal Público">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+
+                <h1 class="mb-4">Horario Semanal</h1>
+
+                <t t-foreach="days_order" t-as="day">
+                    <t t-if="schedule_by_day.get(day)">
+                        <h3 class="mt-4">
+                            <t t-esc="day"/>
+                        </h3>
+                        <table class="table table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Actividad</th>
+                                    <th>Inicio</th>
+                                    <th>Fin</th>
+                                    <th>Monitor/a</th>
+                                    <th>Plazas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="schedule_by_day[day]" t-as="slot">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="slot.activity_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="'%02d:%02d' % (int(slot.time_start), int((slot.time_start % 1) * 60))"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="'%02d:%02d' % (int(slot.time_end), int((slot.time_end % 1) * 60))"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="slot.instructor or '-'"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="slot.activity_id.max_capacity"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                </t>
+
+                <p t-if="not schedule_by_day" class="text-muted">
+                    No hay actividades programadas esta semana.
+                </p>
+
+            </div>
+        </t>
+    </template>
+
+</odoo>
