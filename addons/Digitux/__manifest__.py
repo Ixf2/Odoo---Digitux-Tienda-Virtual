@@ -5,7 +5,7 @@
     'depends': ['base', 'sale', 'product'],
     'data': [
         'security/ir.model.access.csv',
-        'views/digitus_sale_views.xml',
+        'views/digitux_sale_followup_views.xml',
     ],
     'installable': True,
     'application': True,

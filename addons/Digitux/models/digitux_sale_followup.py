@@ -1,34 +1,43 @@
 from odoo import models, fields
 
 
-class GymActivity(models.Model):
-    _name = 'gym.activity'
-    _description = 'Actividad del gimnasio'
+class DigitusSaleFollowup(models.Model):
+    _name = 'digitus.sale.followup'
+    _description = 'Seguimiento de ventas Digitus'
 
     name = fields.Char(
-        string='Nombre',
-        required=True,
-    )
-    description = fields.Text(
-        string='Descripción',
-    )
-    max_capacity = fields.Integer(
-        string='Capacidad máxima',
-        default=20,
-    )
-    duration = fields.Float(
-        string='Duración (horas)',
-        default=1.0,
-    )
-    active = fields.Boolean(
-        string='Activo',
-        default=True,
+        string='Referencia',
+        required=True
     )
 
-    # ── NUEVO en paso 2 ──────────────────────────────────────────
-    # Relación inversa: desde la actividad vemos todos sus horarios
-    schedule_ids = fields.One2many(
-        comodel_name='gym.schedule',
-        inverse_name='activity_id',
-        string='Horarios',
+    customer_id = fields.Many2one(
+        'res.partner',
+        string='Cliente',
+        required=True
+    )
+
+    sale_order_id = fields.Many2one(
+        'sale.order',
+        string='Pedido de venta'
+    )
+
+    product_id = fields.Many2one(
+        'product.product',
+        string='Producto principal'
+    )
+
+    contact_date = fields.Date(
+        string='Fecha de contacto'
+    )
+
+    state = fields.Selection([
+        ('draft', 'Borrador'),
+        ('contacted', 'Cliente contactado'),
+        ('quotation', 'Presupuesto enviado'),
+        ('won', 'Venta ganada'),
+        ('lost', 'Venta perdida'),
+    ], string='Estado', default='draft')
+
+    notes = fields.Text(
+        string='Notas'
     )
