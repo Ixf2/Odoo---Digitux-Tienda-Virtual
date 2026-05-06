@@ -1,0 +1,287 @@
+# DIGITUX - Virtual Store with Odoo
+
+ERP implementation and customization project developed for the fictional company **Digitux**, a startup focused on selling technological products through eCommerce.
+
+---
+
+# Project Description
+
+Digitux is a company specialized in online technology sales.  
+Currently, the company faces several organizational issues caused by the use of poorly integrated systems and manual processes.
+
+Main problems identified:
+
+- Manual order management.
+- Lack of synchronization between sales and inventory.
+- Limited stock control.
+- Difficulties tracking customers and sales.
+- Shipping delays.
+- Limited business analytics capabilities.
+
+To solve these issues, an ERP system based on **Odoo** has been developed, integrating multiple interconnected business modules.
+
+---
+
+# Project Objective
+
+The main objective of this project is to design and implement a functional ERP environment using Odoo, integrating real business modules to improve Digitux’s internal management.
+
+The system integrates functionalities related to:
+
+- Sales
+- Inventory
+- CRM
+- Purchases
+- eCommerce and Website
+
+The entire project runs locally using Docker.
+
+---
+
+# Technologies Used
+
+- Odoo
+- Docker
+- Docker Compose
+- Python
+- XML
+- PostgreSQL
+- Linux
+- Git and GitHub
+
+---
+
+# Development Environment
+
+The project was developed using:
+
+- IsardVDI virtual machines
+- Docker containers
+- Odoo running locally
+- PostgreSQL database system
+
+---
+
+# Project Structure
+
+```bash
+Odoo---Digitux-Tienda-Virtual/
+│
+├── addons/
+│   ├── digitux_sales/
+│   ├── digitux_inventory/
+│   ├── digitux_crm/
+│   ├── digitux_purchase/
+│   └── digitux_ecommerce/
+│
+├── docker-compose.yml
+├── README.md
+└── requirements.txt
+```
+
+---
+
+# Developed Modules
+
+## Sales Module
+
+Responsible for managing:
+
+- Orders
+- Customers
+- Invoicing
+- Commercial management
+
+Developed by:
+- Joana
+
+---
+
+## Inventory Module
+
+Responsible for:
+
+- Stock control
+- Warehouse management
+- Product updates
+- Preventing stock shortages
+
+Developed by:
+- Ariadna
+
+---
+
+## CRM Module
+
+Responsible for:
+
+- Customer management
+- Sales tracking
+- Opportunity management
+- Contact organization
+
+Developed by:
+- César
+
+---
+
+## Purchase Module
+
+Responsible for:
+
+- Supplier management
+- Purchase orders
+- Product replenishment
+
+Developed by:
+- Christopher
+
+---
+
+## eCommerce and Website Module
+
+Responsible for:
+
+- Online store
+- Website integration
+- Product catalog
+- User interface
+
+Developed by:
+- Raúl
+
+---
+
+# Project Installation
+
+## 1. Clone the repository
+
+```bash
+git clone https://github.com/Ixf2/Odoo---Digitux-Tienda-Virtual.git
+```
+
+---
+
+## 2. Enter the project directory
+
+```bash
+cd Odoo---Digitux-Tienda-Virtual
+```
+
+---
+
+## 3. Start Docker containers
+
+```bash
+docker compose up -d
+```
+
+---
+
+## 4. Access Odoo
+
+Open your browser and go to:
+
+```txt
+http://localhost:8069
+```
+
+---
+
+# Docker Configuration
+
+Basic environment example:
+
+```yaml
+services:
+  web:
+    image: odoo:17.0
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./addons:/mnt/extra-addons
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+```
+
+---
+
+# Implemented Features
+
+- Custom model creation.
+- Module integration.
+- Custom menus.
+- XML views.
+- Forms and list views.
+- Product management.
+- Customer management.
+- Supplier management.
+- Order management.
+- Full ERP integration.
+
+---
+
+# Work Planning
+
+## Day 1
+- Project organization.
+- Needs analysis.
+- Task distribution.
+- Module integration planning.
+
+## Day 2
+- Research on Odoo models.
+- Technical testing with Docker.
+- Environment configuration.
+- Initial development of models and views.
+
+---
+
+# Responsibilities Distribution
+
+| Member | Assigned Module |
+|---|---|
+| Raúl | eCommerce and Website |
+| Ariadna | Inventory |
+| César | CRM |
+| Christopher | Purchases |
+| Joana | Sales |
+
+---
+
+# Achieved Objectives
+
+- Complete modular integration.
+- Real ERP environment simulation.
+- Partial business process automation.
+- Collaborative development using Git and GitHub.
+- Functional Docker implementation.
+
+---
+
+# Project Status
+
+Academic project currently under development.
+
+---
+
+# Authors
+
+- Joana
+- Raúl
+- Ariadna
+- César
+- Christopher
+
+---
+
+# License
+
+Educational project created for academic purposes.
