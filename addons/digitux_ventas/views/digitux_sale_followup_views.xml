@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_digitus_sale_followup_tree" model="ir.ui.view">
+        <field name="name">digitus.sale.followup.tree</field>
+        <field name="model">digitus.sale.followup</field>
+        <field name="arch" type="xml">
+            <tree string="Seguimiento de ventas">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="sale_order_id"/>
+                <field name="product_id"/>
+                <field name="contact_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_digitus_sale_followup_form" model="ir.ui.view">
+        <field name="name">digitus.sale.followup.form</field>
+        <field name="model">digitus.sale.followup</field>
+        <field name="arch" type="xml">
+            <form string="Seguimiento de venta">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="customer_id"/>
+                        <field name="sale_order_id"/>
+                        <field name="product_id"/>
+                        <field name="contact_date"/>
+                        <field name="state"/>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_digitus_sale_followup" model="ir.actions.act_window">
+        <field name="name">Seguimiento de ventas</field>
+        <field name="res_model">digitus.sale.followup</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_digitus_root"
+              name="Digitus"/>
+
+    <menuitem id="menu_digitus_sales"
+              name="Ventas"
+              parent="menu_digitus_root"/>
+
+    <menuitem id="menu_digitus_sale_followup"
+              name="Seguimiento de ventas"
+              parent="menu_digitus_sales"
+              action="action_digitus_sale_followup"/>
+
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Entrada en el panel principal del portal -->
+        <template id="portal_my_home_digitux" name="Portal: Solicitudes Digitux"
+                  inherit_id="portal.portal_my_home" priority="30">
+            <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+                <t t-set="portal_vendor_category_enable" t-value="True"/>
+            </xpath>
+            <div id="portal_vendor_category" position="inside">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Solicitudes de Compra</t>
+                    <t t-set="text">Gestiona tus solicitudes de compra</t>
+                    <t t-set="url" t-value="'/my/solicitudes'"/>
+                    <t t-set="placeholder_count" t-value="'digitux_request_count'"/>
+                </t>
+            </div>
+        </template>
+
+        <!-- Lista de solicitudes -->
+        <template id="portal_my_solicitudes" name="Mis Solicitudes de Compra">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Solicitudes de Compra</t>
+                </t>
+                <t t-if="not purchase_requests">
+                    <p class="alert alert-warning">No tienes solicitudes de compra registradas.</p>
+                </t>
+                <t t-if="purchase_requests" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th>Referencia</th>
+                            <th>Proveedor</th>
+                            <th>Producto</th>
+                            <th class="text-end">Total</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <t t-foreach="purchase_requests" t-as="pr">
+                        <tr>
+                            <td><t t-esc="pr.name"/></td>
+                            <td><t t-esc="pr.supplier_id.name or '-'"/></td>
+                            <td><t t-esc="pr.product_id.name or '-'"/></td>
+                            <td class="text-end"><t t-esc="pr.total_estimated"/></td>
+                            <td><t t-esc="dict(pr._fields['state'].selection).get(pr.state)"/></td>
+                        </tr>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
