@@ -17,3 +17,5 @@ htmlcov/
 *.bak
 *.orig
 *.log
+*dist/
+*/dist
