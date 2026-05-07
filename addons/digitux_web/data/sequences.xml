@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_digitux_pc_build" model="ir.sequence">
+        <field name="name">Digitux Configuración PC</field>
+        <field name="code">digitux.pc.build</field>
+        <field name="prefix">DPC/%(year)s/</field>
+        <field name="padding">4</field>
+    </record>
+    <record id="seq_digitux_rma" model="ir.sequence">
+        <field name="name">Digitux RMA</field>
+        <field name="code">digitux.rma.request</field>
+        <field name="prefix">RMA/%(year)s/</field>
+        <field name="padding">4</field>
+    </record>
+    <record id="seq_digitux_sale_followup" model="ir.sequence">
+        <field name="name">Digitux Seguimiento de Ventas</field>
+        <field name="code">digitux.sale.followup</field>
+        <field name="prefix">DSF/%(year)s/</field>
+        <field name="padding">4</field>
+    </record>
+    <record id="seq_digitux_purchase_request" model="ir.sequence">
+        <field name="name">Digitux Solicitud de Compra</field>
+        <field name="code">digitux.purchase.request</field>
+        <field name="prefix">DPR/%(year)s/</field>
+        <field name="padding">4</field>
+    </record>
+    <record id="seq_digitux_stock_control" model="ir.sequence">
+        <field name="name">Digitux Control de Stock</field>
+        <field name="code">digitux.stock.control</field>
+        <field name="prefix">DSC/%(year)s/</field>
+        <field name="padding">4</field>
+    </record>
+    <record id="seq_digitux_crm_ticket" model="ir.sequence">
+        <field name="name">Digitux Ticket CRM</field>
+        <field name="code">digitux.crm.ticket</field>
+        <field name="prefix">DCT/%(year)s/</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>

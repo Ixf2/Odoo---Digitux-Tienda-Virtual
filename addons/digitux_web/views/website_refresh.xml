@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Esta capa reorganiza la portada sin tocar los templates base del shop. -->
+    <template id="home_hero_refresh" inherit_id="digitux_web.home" priority="40">
+        <xpath expr="//section[hasclass('digitux-hero')]" position="replace">
+            <section class="digitux-hero">
+                <div class="container digitux-hero-layout">
+                    <div class="digitux-hero-copy">
+                        <div class="digitux-hero-brandline">
+                            <span class="digitux-badge">Digitux sobre Odoo 17</span>
+                        </div>
+                        <h1>Hardware premium con operativa conectada.</h1>
+                        <p class="digitux-lead">Tienda, configurador y soporte conectados con ventas, CRM, compras, inventario y portal cliente.</p>
+                        <div class="digitux-actions">
+                            <a href="/digitux/configurador" class="btn btn-primary btn-lg">Configurar mi PC</a>
+                            <a href="/shop" class="btn btn-outline-light btn-lg">Entrar en la tienda</a>
+                        </div>
+                        <div class="digitux-trust-row">
+                            <span>Presupuestos y CRM</span>
+                            <span>Portal, tickets y RMA</span>
+                            <span>Stock y compras</span>
+                        </div>
+                    </div>
+                    <div class="digitux-hero-stage">
+                            <div class="digitux-hero-showcase">
+                                <div class="digitux-hero-media primary digitux-bg-media" role="img" aria-label="Setup premium Digitux" style="background-image: url('/digitux_web/static/src/img/command-center.jpg');"/>
+                                <div class="digitux-hero-stack">
+                                    <div class="digitux-hero-panel">
+                                        <span class="digitux-eyebrow">Operacion conectada</span>
+                                        <strong>Website, ventas, CRM, stock, compras, soporte y portal sobre el mismo dato.</strong>
+                                        <ul class="digitux-mini-list">
+                                        <li>Builds creadas: <t t-out="catalog_stats['build_count']"/></li>
+                                        <li>Solicitudes de compra: <t t-out="catalog_stats['purchase_request_count']"/></li>
+                                        <li>Seguimientos comerciales: <t t-out="catalog_stats['sale_followup_count']"/></li>
+                                    </ul>
+                                </div>
+                                    <div class="digitux-hero-media secondary digitux-bg-media" role="img" aria-label="Creator desk Digitux" style="background-image: url('/digitux_web/static/src/img/creator-desk.jpg');"/>
+                                </div>
+                            </div>
+                        <div class="digitux-hero-summary">
+                            <span class="digitux-eyebrow">Cobertura real</span>
+                            <strong><t t-out="catalog_stats['component_type_count']"/> familias de componente, <t t-out="catalog_stats['supplier_count']"/> proveedores y <t t-out="catalog_stats['stock_control_count']"/> controles de stock ya cargados.</strong>
+                            <small>Una portada mas limpia, mas estable y util para mover datos reales dentro de Odoo.</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+
+    <template id="layout_refresh" inherit_id="website.layout" priority="90">
+        <!-- Sustituimos cabecera y footer publicos para evitar mezclar bloques visuales de Odoo con los de Digitux. -->
+        <xpath expr="//header" position="replace">
+            <header id="top" class="digitux-site-header" data-anchor="true" data-name="Header" t-if="not no_header">
+                <t t-set="current_path" t-value="request.httprequest.path or '/'"/>
+                <nav class="navbar navbar-expand-xl">
+                    <div class="container digitux-nav-shell">
+                        <a class="digitux-site-brand" href="/digitux" aria-label="Digitux">
+                            <img class="digitux-brand-signature" src="/digitux_web/static/src/img/digitux-logo-full.png" alt="Digitux"/>
+                        </a>
+                        <button class="navbar-toggler digitux-nav-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#digituxMainNav" aria-controls="digituxMainNav" aria-expanded="false" aria-label="Abrir menu">
+                            <span class="fa fa-bars"/>
+                        </button>
+                        <div class="collapse navbar-collapse" id="digituxMainNav">
+                            <ul class="navbar-nav digitux-nav-links me-auto">
+                                <li class="nav-item">
+                                    <a t-attf-class="nav-link #{'active' if current_path in ['/', '/digitux'] else ''}" href="/digitux">Inicio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a t-attf-class="nav-link #{'active' if current_path.startswith('/shop') else ''}" href="/shop">Tienda</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a t-attf-class="nav-link #{'active' if current_path.startswith('/digitux/configurador') else ''}" href="/digitux/configurador">Configura tu PC</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a t-attf-class="nav-link #{'active' if current_path.startswith('/digitux/comparador') else ''}" href="/digitux/comparador">Comparador</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a t-attf-class="nav-link #{'active' if current_path.startswith('/digitux/rma') else ''}" href="/digitux/rma">Garantia</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a t-attf-class="nav-link #{'active' if current_path.startswith('/digitux/soporte') else ''}" href="/digitux/soporte">Soporte</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a t-attf-class="nav-link #{'active' if current_path.startswith('/digitux/envio') else ''}" href="/digitux/envio">Envios</a>
+                                </li>
+                            </ul>
+                            <div class="digitux-nav-meta">
+                                <a class="digitux-nav-phone" href="tel:+34900420420">+34 900 420 420</a>
+                                <t t-if="request.env.user._is_public()">
+                                    <a class="btn btn-outline-light btn-sm" href="/web/login?redirect=/my/home">Entrar</a>
+                                </t>
+                                <t t-else="">
+                                    <a class="btn btn-outline-light btn-sm" href="/my/home">Mi cuenta</a>
+                                </t>
+                                <a class="btn btn-primary btn-sm" href="/shop/cart">Carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+        </xpath>
+
+        <xpath expr="//footer" position="replace">
+            <footer id="bottom" class="digitux-site-footer" data-anchor="true" data-name="Footer" t-if="not no_footer">
+                <t t-set="digitux_phone" t-value="website.company_id.phone or '+34 900 420 420'"/>
+                <t t-set="digitux_phone_link" t-value="digitux_phone.replace(' ', '')"/>
+                <t t-set="digitux_email" t-value="website.company_id.email or 'hola@digitux.es'"/>
+                <div class="container">
+                    <div class="digitux-footer-grid">
+                        <div class="digitux-footer-brand">
+                            <div class="digitux-footer-logo">
+                                <img class="digitux-footer-signature" src="/digitux_web/static/src/img/digitux-logo-full.png" alt="Digitux"/>
+                            </div>
+                            <h4>eCommerce, configurador y postventa trabajando sobre el mismo Odoo.</h4>
+                            <p>Una tienda de hardware con identidad clara, menos ruido visual y procesos reales para ventas, stock, compras y soporte.</p>
+                            <div class="digitux-footer-pills">
+                                <span>Catalogo vivo</span>
+                                <span>CRM conectado</span>
+                                <span>RMA trazable</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>Explorar</h5>
+                            <ul class="digitux-footer-links">
+                                <li><a href="/digitux">Home Digitux</a></li>
+                                <li><a href="/shop">Tienda</a></li>
+                                <li><a href="/digitux/configurador">Configurador</a></li>
+                                <li><a href="/digitux/comparador">Comparador</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5>Operacion</h5>
+                            <ul class="digitux-footer-links">
+                                <li><a href="/digitux/rma">Garantia y RMA</a></li>
+                                <li><a href="/digitux/soporte">Soporte y tickets</a></li>
+                                <li><a href="/digitux/envio">Envios</a></li>
+                                <li><a href="/my/digitux">Portal cliente</a></li>
+                                <li><a href="/shop">Tienda online</a></li>
+                            </ul>
+                        </div>
+                        <div class="digitux-footer-cta">
+                            <h5>Soporte</h5>
+                            <p>Convierte la web en presupuestos, tickets y seguimiento real sin salir de Odoo.</p>
+                            <a class="digitux-footer-contact" t-att-href="'mailto:%s' % digitux_email">
+                                <span class="fa fa-envelope"/>
+                                <span><t t-out="digitux_email"/></span>
+                            </a>
+                            <a class="digitux-footer-contact" t-att-href="'tel:%s' % digitux_phone_link">
+                                <span class="fa fa-phone"/>
+                                <span><t t-out="digitux_phone"/></span>
+                            </a>
+                            <a class="btn btn-primary w-100" href="/digitux/soporte">Abrir soporte</a>
+                        </div>
+                    </div>
+                    <div class="digitux-footer-bottom">
+                        <span>Digitux - web y ERP sobre Odoo 17</span>
+                        <span>Base unica para ecommerce, ventas, inventario y postventa</span>
+                    </div>
+                </div>
+            </footer>
+        </xpath>
+    </template>
+
+    <template id="shop_rail_refresh" inherit_id="website_sale.products" priority="40">
+        <xpath expr="//aside[@id='products_grid_before']/div[hasclass('o_wsale_products_grid_before_rail')]" position="inside">
+            <div class="digitux-shop-rail-card mb-4">
+                <img class="digitux-shop-rail-logo" src="/digitux_web/static/src/img/digitux-logo-full.png" alt="Digitux"/>
+                <p>Catalogo real, configurador, soporte y operaciones sobre la misma base de datos.</p>
+                <div class="digitux-shop-rail-pills">
+                    <span>Gaming rigs</span>
+                    <span>Creator studio</span>
+                    <span>Productividad</span>
+                    <span>Streaming</span>
+                </div>
+                <a href="/digitux/configurador" class="btn btn-primary w-100">Abrir configurador</a>
+            </div>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_vendor_techpro" model="res.partner">
+        <field name="name">Distribuidor TechPro Digitux</field>
+        <field name="supplier_rank">1</field>
+        <field name="email">proveedor@techpro.example</field>
+        <field name="phone">+34 900 100 200</field>
+    </record>
+
+    <record id="product_cpu_ryzen_7600x" model="product.template">
+        <field name="name">AMD Ryzen 5 7600X</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">249.00</field>
+        <field name="standard_price">185.00</field>
+        <field name="website_published">1</field>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">cpu</field>
+        <field name="digitux_socket">AM5</field>
+        <field name="digitux_ram_type">ddr5</field>
+        <field name="digitux_power_watts">105</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">6 núcleos, 12 hilos, socket AM5. Ideal para gaming equilibrado.</field>
+    </record>
+
+    <record id="product_board_b650" model="product.template">
+        <field name="name">ASUS TUF Gaming B650-PLUS</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">219.00</field>
+        <field name="standard_price">155.00</field>
+        <field name="website_published">1</field>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">motherboard</field>
+        <field name="digitux_socket">AM5</field>
+        <field name="digitux_ram_type">ddr5</field>
+        <field name="digitux_form_factor">atx</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">Placa ATX AM5 con DDR5, PCIe 4.0 y conectividad gaming.</field>
+    </record>
+
+    <record id="product_ram_ddr5" model="product.template">
+        <field name="name">Corsair Vengeance 32GB DDR5 6000</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">129.00</field>
+        <field name="standard_price">89.00</field>
+        <field name="website_published">1</field>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">ram</field>
+        <field name="digitux_ram_type">ddr5</field>
+        <field name="digitux_warranty_months">60</field>
+        <field name="digitux_short_specs">Kit 2x16GB DDR5 de baja latencia, recomendado para gaming y edición.</field>
+    </record>
+
+    <record id="product_gpu_4070" model="product.template">
+        <field name="name">NVIDIA GeForce RTX 4070 12GB</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">629.00</field>
+        <field name="standard_price">505.00</field>
+        <field name="website_published">1</field>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">gpu</field>
+        <field name="digitux_power_watts">200</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">GPU 12GB con ray tracing, DLSS y excelente eficiencia energética.</field>
+    </record>
+
+    <record id="product_gpu_rx7800" model="product.template">
+        <field name="name">AMD Radeon RX 7800 XT 16GB</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">559.00</field>
+        <field name="standard_price">445.00</field>
+        <field name="website_published">1</field>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">gpu</field>
+        <field name="digitux_power_watts">263</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_short_specs">16GB VRAM, gran rendimiento 1440p y buena relación precio/rendimiento.</field>
+    </record>
+
+    <record id="product_ssd_980" model="product.template">
+        <field name="name">Samsung 980 NVMe 1TB</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">89.00</field>
+        <field name="standard_price">62.00</field>
+        <field name="website_published">1</field>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">storage</field>
+        <field name="digitux_power_watts">8</field>
+        <field name="digitux_warranty_months">60</field>
+        <field name="digitux_short_specs">SSD NVMe de 1TB para cargas rápidas y gran fiabilidad.</field>
+    </record>
+
+    <record id="product_psu_rm750" model="product.template">
+        <field name="name">Corsair RM750x 750W Gold</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">139.00</field>
+        <field name="standard_price">98.00</field>
+        <field name="website_published">1</field>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">psu</field>
+        <field name="digitux_power_watts">750</field>
+        <field name="digitux_form_factor">atx</field>
+        <field name="digitux_warranty_months">120</field>
+        <field name="digitux_short_specs">Fuente modular 80 Plus Gold de 750W con margen de ampliación.</field>
+    </record>
+
+    <record id="product_case_h5" model="product.template">
+        <field name="name">NZXT H5 Flow ATX Blanca</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">109.00</field>
+        <field name="standard_price">76.00</field>
+        <field name="website_published">1</field>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">case</field>
+        <field name="digitux_form_factor">midtower</field>
+        <field name="digitux_warranty_months">24</field>
+        <field name="digitux_short_specs">Caja mid tower con gran flujo de aire y diseño minimalista.</field>
+    </record>
+
+    <record id="product_keyboard_mx" model="product.template">
+        <field name="name">Logitech MX Keys S</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">119.00</field>
+        <field name="standard_price">82.00</field>
+        <field name="website_published">1</field>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">keyboard</field>
+        <field name="digitux_form_factor">peripheral</field>
+        <field name="digitux_warranty_months">24</field>
+        <field name="digitux_short_specs">Teclado inalámbrico premium para productividad y estudio.</field>
+    </record>
+
+    <record id="product_monitor_dell" model="product.template">
+        <field name="name">Dell UltraSharp 27 4K USB-C</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">429.00</field>
+        <field name="standard_price">335.00</field>
+        <field name="website_published">1</field>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">monitor</field>
+        <field name="digitux_form_factor">peripheral</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">Monitor 27 pulgadas 4K con USB-C, ideal para diseño y oficina.</field>
+    </record>
+
+    <record id="supplierinfo_cpu" model="product.supplierinfo">
+        <field name="partner_id" ref="partner_vendor_techpro"/>
+        <field name="product_tmpl_id" ref="product_cpu_ryzen_7600x"/>
+        <field name="min_qty">1</field>
+        <field name="price">185.00</field>
+    </record>
+    <record id="supplierinfo_board" model="product.supplierinfo">
+        <field name="partner_id" ref="partner_vendor_techpro"/>
+        <field name="product_tmpl_id" ref="product_board_b650"/>
+        <field name="min_qty">1</field>
+        <field name="price">155.00</field>
+    </record>
+    <record id="supplierinfo_gpu" model="product.supplierinfo">
+        <field name="partner_id" ref="partner_vendor_techpro"/>
+        <field name="product_tmpl_id" ref="product_gpu_4070"/>
+        <field name="min_qty">1</field>
+        <field name="price">505.00</field>
+    </record>
+</odoo>

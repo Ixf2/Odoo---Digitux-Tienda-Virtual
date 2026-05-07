@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="base.main_company" model="res.company">
+        <field name="name">Digitux</field>
+        <field name="phone">+34 900 420 420</field>
+        <field name="email">hola@digitux.es</field>
+        <field name="website">http://localhost:8069/digitux</field>
+    </record>
+
+    <record id="base.main_partner" model="res.partner">
+        <field name="name">Digitux</field>
+        <field name="phone">+34 900 420 420</field>
+        <field name="email">hola@digitux.es</field>
+        <field name="street">Avenida de la Innovacion 42</field>
+        <field name="city">Las Palmas de Gran Canaria</field>
+        <field name="zip">35010</field>
+    </record>
+
+    <record id="website.default_website" model="website">
+        <field name="name">Digitux</field>
+        <field name="homepage_url">/digitux</field>
+    </record>
+</odoo>

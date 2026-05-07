@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_digitux_sale_followup_tree" model="ir.ui.view">
+        <field name="name">digitux.sale.followup.tree</field>
+        <field name="model">digitux.sale.followup</field>
+        <field name="arch" type="xml">
+            <tree string="Seguimiento de ventas" decoration-success="state == 'won'" decoration-danger="state == 'lost'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="sale_order_id"/>
+                <field name="product_id"/>
+                <field name="contact_date"/>
+                <field name="next_action_date"/>
+                <field name="state"/>
+                <field name="expected_revenue" widget="monetary"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_digitux_sale_followup_form" model="ir.ui.view">
+        <field name="name">digitux.sale.followup.form</field>
+        <field name="model">digitux.sale.followup</field>
+        <field name="arch" type="xml">
+            <form string="Seguimiento de venta">
+                <header>
+                    <button name="action_mark_contacted" string="Contactado" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_mark_quotation" string="Presupuesto enviado" type="object" invisible="state not in ('draft', 'contacted')"/>
+                    <button name="action_mark_won" string="Ganada" type="object" class="btn-primary" invisible="state == 'won'"/>
+                    <button name="action_mark_lost" string="Perdida" type="object" invisible="state == 'lost'"/>
+                    <button name="action_reset_draft" string="Reiniciar" type="object" invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,contacted,quotation,won,lost"/>
+                </header>
+                <sheet>
+                    <h1><field name="name" readonly="1"/></h1>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="sale_order_id"/>
+                            <field name="crm_lead_id"/>
+                            <field name="product_id"/>
+                        </group>
+                        <group>
+                            <field name="contact_date"/>
+                            <field name="next_action_date"/>
+                            <field name="expected_revenue" widget="monetary"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <field name="notes" nolabel="1" placeholder="Anota el siguiente paso comercial, objeciones o contexto del cliente."/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_digitux_sale_followup_search" model="ir.ui.view">
+        <field name="name">digitux.sale.followup.search</field>
+        <field name="model">digitux.sale.followup</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="sale_order_id"/>
+                <filter name="to_contact" string="Por contactar" domain="[('state', '=', 'draft')]"/>
+                <filter name="quoted" string="Presupuestadas" domain="[('state', '=', 'quotation')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_state" string="Estado" context="{'group_by': 'state'}"/>
+                    <filter name="group_contact" string="Fecha contacto" context="{'group_by': 'contact_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_digitux_sale_followup" model="ir.actions.act_window">
+        <field name="name">Seguimiento de ventas</field>
+        <field name="res_model">digitux.sale.followup</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_digitux_sales" name="Ventas" parent="menu_digitux_root" sequence="25"/>
+    <menuitem id="menu_digitux_sale_followup" name="Seguimiento comercial" parent="menu_digitux_sales" action="action_digitux_sale_followup" sequence="10"/>
+</odoo>

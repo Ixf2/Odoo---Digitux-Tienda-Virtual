@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_digitux_purchase_request_tree" model="ir.ui.view">
+        <field name="name">digitux.purchase.request.tree</field>
+        <field name="model">digitux.purchase.request</field>
+        <field name="arch" type="xml">
+            <tree string="Solicitudes de compra" decoration-danger="state == 'cancelled'" decoration-success="state == 'purchased'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="supplier_id"/>
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="total_estimated" widget="monetary"/>
+                <field name="required_date"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_digitux_purchase_request_form" model="ir.ui.view">
+        <field name="name">digitux.purchase.request.form</field>
+        <field name="model">digitux.purchase.request</field>
+        <field name="arch" type="xml">
+            <form string="Solicitud de compra">
+                <header>
+                    <button name="action_confirm" string="Confirmar" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_create_purchase_order" string="Crear orden de compra" type="object" class="btn-primary" invisible="state != 'confirmed'"/>
+                    <button name="action_view_purchase_order" string="Ver orden" type="object" invisible="not purchase_order_id"/>
+                    <button name="action_cancel" string="Cancelar" type="object" invisible="state not in ('draft', 'confirmed')"/>
+                    <button name="action_reset_draft" string="Reiniciar" type="object" invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,purchased,cancelled"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_purchase_order" icon="fa-shopping-basket" invisible="not purchase_order_id">
+                            <field name="purchase_order_id" widget="statinfo" string="Orden"/>
+                        </button>
+                    </div>
+                    <h1><field name="name" readonly="1"/></h1>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="email"/>
+                            <field name="supplier_id"/>
+                            <field name="product_id"/>
+                        </group>
+                        <group>
+                            <field name="quantity"/>
+                            <field name="estimated_price" widget="monetary"/>
+                            <field name="total_estimated" widget="monetary" readonly="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="required_date"/>
+                        </group>
+                    </group>
+                    <field name="notes" nolabel="1" placeholder="Contexto de compra, urgencia, configuracion o notas del proveedor."/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_digitux_purchase_request_search" model="ir.ui.view">
+        <field name="name">digitux.purchase.request.search</field>
+        <field name="model">digitux.purchase.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="supplier_id"/>
+                <field name="product_id"/>
+                <filter name="pending" string="Pendientes" domain="[('state', 'in', ('draft', 'confirmed'))]"/>
+                <filter name="done" string="Compradas" domain="[('state', '=', 'purchased')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_state" string="Estado" context="{'group_by': 'state'}"/>
+                    <filter name="group_supplier" string="Proveedor" context="{'group_by': 'supplier_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_digitux_purchase_request" model="ir.actions.act_window">
+        <field name="name">Solicitudes de compra</field>
+        <field name="res_model">digitux.purchase.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_digitux_supply" name="Abastecimiento" parent="menu_digitux_root" sequence="30"/>
+    <menuitem id="menu_digitux_purchase_requests" name="Solicitudes de compra" parent="menu_digitux_supply" action="action_digitux_purchase_request" sequence="10"/>
+</odoo>
