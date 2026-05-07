@@ -1,12 +1,15 @@
 {
-    'name': 'Digitux Ventas',
-    'version': '1.0',
-    'summary': 'Gestión de ventas de Digitux',
-    'depends': ['base', 'sale', 'product'],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/digitux_sale_followup_views.xml',
+    "name": "Digitux Ventas",
+    "summary": "Capa modular de ventas para Digitux",
+    "version": "17.0.1.0.0",
+    "author": "Digitux",
+    "license": "LGPL-3",
+    "category": "Sales",
+    "depends": ["digitux_web", "portal", "sale_management"],
+    "data": [
+        "views/digitux_ventas_bridge.xml",
+        "views/portal_templates.xml",
     ],
-    'installable': True,
-    'application': True,
+    "installable": True,
+    "application": False,
 }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="portal_my_home_digitux_purchase"
+    <template id="portal_my_home_digitux_ventas"
               inherit_id="portal.portal_my_home"
-              priority="36">
+              priority="35">
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
             <t t-if="False"/>
         </xpath>
     </template>
+    <template id="portal_my_sale_followups" name="Digitux Sales Followups Bridge"/>
 </odoo>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_digitux_crm_ticket_tree" model="ir.ui.view">
+        <field name="name">digitux.crm.ticket.tree</field>
+        <field name="model">digitux.crm.ticket</field>
+        <field name="arch" type="xml">
+            <tree string="Tickets de soporte" decoration-success="state == 'closed'">
+                <field name="priority" widget="priority"/>
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="sale_order_id"/>
+                <field name="date_deadline"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_digitux_crm_ticket_form" model="ir.ui.view">
+        <field name="name">digitux.crm.ticket.form</field>
+        <field name="model">digitux.crm.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Ticket de soporte">
+                <header>
+                    <button name="action_start_progress" string="En proceso" type="object" class="btn-primary" invisible="state != 'open'"/>
+                    <button name="action_close" string="Cerrar" type="object" class="btn-primary" invisible="state == 'closed'"/>
+                    <button name="action_reopen" string="Reabrir" type="object" invisible="state != 'closed'"/>
+                    <button name="action_open_crm_case" string="Abrir CRM" type="object" invisible="not crm_lead_id"/>
+                    <field name="state" widget="statusbar" statusbar_visible="open,in_progress,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_open_crm_case" icon="fa-life-ring" invisible="not crm_lead_id">
+                            <field name="crm_lead_id" widget="statinfo" string="Caso CRM"/>
+                        </button>
+                    </div>
+                    <h1><field name="reference" readonly="1"/></h1>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="customer_id"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="priority" widget="priority"/>
+                            <field name="date_deadline"/>
+                            <field name="sale_order_id"/>
+                            <field name="crm_lead_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <field name="description" nolabel="1" placeholder="Describe la consulta o incidencia del cliente."/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_digitux_crm_ticket_search" model="ir.ui.view">
+        <field name="name">digitux.crm.ticket.search</field>
+        <field name="model">digitux.crm.ticket</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <filter name="open" string="Abiertos" domain="[('state', '=', 'open')]"/>
+                <filter name="progress" string="En proceso" domain="[('state', '=', 'in_progress')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_state" string="Estado" context="{'group_by': 'state'}"/>
+                    <filter name="group_priority" string="Prioridad" context="{'group_by': 'priority'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_digitux_crm_ticket" model="ir.actions.act_window">
+        <field name="name">Tickets de soporte</field>
+        <field name="res_model">digitux.crm.ticket</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_digitux_crm" name="CRM y soporte" parent="menu_digitux_root" sequence="40"/>
+    <menuitem id="menu_digitux_crm_ticket" name="Tickets de soporte" parent="menu_digitux_crm" action="action_digitux_crm_ticket" sequence="10"/>
+</odoo>

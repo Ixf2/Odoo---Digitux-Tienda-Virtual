@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="home" name="Digitux Home">
+        <t t-call="website.layout">
+            <div id="wrap" class="digitux-page">
+                <section class="digitux-hero">
+                    <div class="container digitux-hero-layout">
+                        <div class="digitux-hero-copy">
+                            <span class="digitux-badge">Digitux · tech commerce sobre Odoo</span>
+                            <h1>Una tienda tech mucho mas seria: visual, premium y conectada con ventas, stock y postventa.</h1>
+                            <p class="digitux-lead">Digitux mezcla ecommerce, configurador de PC, comparador tecnico, RMA y logistica internacional con una operativa de Odoo preparada para crecer sin caos.</p>
+                            <div class="digitux-actions">
+                                <a href="/digitux/configurador" class="btn btn-primary btn-lg">Configurar mi PC</a>
+                                <a href="/shop" class="btn btn-outline-light btn-lg">Entrar en la tienda</a>
+                            </div>
+                            <div class="digitux-trust-row">
+                                <span>Tarjeta, PayPal y Bitcoin listos para tu narrativa comercial</span>
+                                <span>GLS y DHL dentro del flujo</span>
+                                <span>Portal cliente con RMA y builds</span>
+                            </div>
+                        </div>
+                        <div class="digitux-hero-stage">
+                            <div class="digitux-hero-media">
+                                <img src="/digitux_web/static/src/img/hero-gaming.jpg" alt="Setup gaming Digitux"/>
+                            </div>
+                            <div class="digitux-floating-card top">
+                                <span class="digitux-eyebrow">Catalogo activo</span>
+                                <strong><t t-out="catalog_stats['product_count']"/> referencias publicadas</strong>
+                                <small>Componentes, perifericos y estaciones listas para vender.</small>
+                            </div>
+                            <div class="digitux-floating-card bottom">
+                                <span class="digitux-eyebrow">Stack operativo</span>
+                                <strong>Website + Sales + CRM + Stock + Compras + Portal</strong>
+                                <small>Todo recogido desde la misma base de datos.</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="digitux-band">
+                    <div class="container digitux-stat-grid">
+                        <div class="digitux-stat-card">
+                            <strong><t t-out="catalog_stats['product_count']"/></strong>
+                            <span>Productos tecnicos</span>
+                        </div>
+                        <div class="digitux-stat-card">
+                            <strong><t t-out="catalog_stats['component_type_count']"/></strong>
+                            <span>Tipos de componente</span>
+                        </div>
+                        <div class="digitux-stat-card">
+                            <strong><t t-out="catalog_stats['supplier_count']"/></strong>
+                            <span>Proveedores cargados</span>
+                        </div>
+                        <div class="digitux-stat-card">
+                            <strong><t t-out="'Desde %.2f EUR' % catalog_stats['entry_price']"/></strong>
+                            <span>Entrada al catalogo</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="container digitux-section">
+                    <div class="digitux-section-head wide">
+                        <div>
+                            <span class="digitux-badge dark">Direccion creativa</span>
+                            <h2>Una home con discurso comercial claro, pero pensada para empujar procesos reales en Odoo.</h2>
+                        </div>
+                        <p>El objetivo no es solo vender hardware: es convertir cada visita en datos utiles para presupuestos, seguimiento comercial, inventario y soporte.</p>
+                    </div>
+                    <div class="digitux-spotlight-grid">
+                        <t t-foreach="home_spotlights" t-as="spotlight">
+                            <a class="digitux-spotlight-card" t-att-href="spotlight['url']">
+                                <div class="digitux-spotlight-media">
+                                    <img t-att-src="spotlight['image']" t-att-alt="spotlight['title']"/>
+                                </div>
+                                <div class="digitux-spotlight-copy">
+                                    <span class="digitux-eyebrow"><t t-out="spotlight['eyebrow']"/></span>
+                                    <h3><t t-out="spotlight['title']"/></h3>
+                                    <p><t t-out="spotlight['description']"/></p>
+                                    <span class="digitux-text-link"><t t-out="spotlight['cta']"/></span>
+                                </div>
+                            </a>
+                        </t>
+                    </div>
+                </section>
+
+                <section class="container digitux-section">
+                    <div class="digitux-section-head">
+                        <span class="digitux-badge dark">Cobertura de catalogo</span>
+                        <h2>Mas variedad, mejor estructura y una taxonomia que ayuda a vender.</h2>
+                    </div>
+                    <div class="digitux-chip-cloud">
+                        <t t-foreach="component_type_counts" t-as="component">
+                            <div class="digitux-chip">
+                                <strong><t t-out="component['count']"/></strong>
+                                <span><t t-out="component['label']"/></span>
+                            </div>
+                        </t>
+                    </div>
+                    <div class="digitux-service-grid">
+                        <t t-foreach="service_lanes" t-as="lane">
+                            <a class="digitux-service-card" t-att-href="lane['url']">
+                                <img t-att-src="lane['image']" t-att-alt="lane['title']"/>
+                                <div>
+                                    <h3><t t-out="lane['title']"/></h3>
+                                    <p><t t-out="lane['description']"/></p>
+                                </div>
+                            </a>
+                        </t>
+                    </div>
+                </section>
+
+                <section class="container digitux-section">
+                    <div class="digitux-section-head wide">
+                        <div>
+                            <span class="digitux-badge dark">Cobertura ERP</span>
+                            <h2>No es solo una web bonita: la portada empuja ventas, compras, soporte e inventario reales.</h2>
+                        </div>
+                        <p>La fusion con el PDF y las ramas del GitHub queda visible tambien en la web: cada bloque tiene reflejo en modelos, vistas, menu y portal.</p>
+                    </div>
+                    <div class="digitux-utility-grid">
+                        <div class="digitux-utility-card">
+                            <strong><t t-out="catalog_stats['build_count']"/></strong>
+                            <p>configuraciones creadas con presupuesto y oportunidad CRM.</p>
+                        </div>
+                        <div class="digitux-utility-card">
+                            <strong><t t-out="catalog_stats['purchase_request_count']"/></strong>
+                            <p>solicitudes de compra que alimentan abastecimiento y portal.</p>
+                        </div>
+                        <div class="digitux-utility-card">
+                            <strong><t t-out="catalog_stats['sale_followup_count']"/></strong>
+                            <p>seguimientos comerciales para cerrar ventas con mas criterio.</p>
+                        </div>
+                        <div class="digitux-utility-card">
+                            <strong><t t-out="catalog_stats['ticket_count']"/></strong>
+                            <p>tickets y soporte web conectados con CRM y postventa.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="container digitux-section">
+                    <div class="digitux-section-head row align-items-end">
+                        <div class="col-lg-8">
+                            <span class="digitux-badge dark">Productos destacados</span>
+                            <h2>Lo mejor del escaparate Digitux con una presentacion mucho mas editorial.</h2>
+                        </div>
+                        <div class="col-lg-4 text-lg-end">
+                            <a href="/shop" class="btn btn-outline-primary">Ver tienda completa</a>
+                        </div>
+                    </div>
+                    <div class="digitux-products-grid deluxe">
+                        <t t-foreach="featured_products" t-as="product">
+                            <div class="digitux-product-card deluxe">
+                                <div class="digitux-product-media">
+                                    <img t-att-src="component_visuals.get(product.product_tmpl_id.digitux_component_type, '/digitux_web/static/src/img/workstation-dual.jpg')" t-att-alt="product.display_name"/>
+                                </div>
+                                <div class="digitux-product-body">
+                                    <div class="digitux-product-type"><t t-out="product.product_tmpl_id.digitux_component_type or 'tech'"/></div>
+                                    <h3><t t-out="product.display_name"/></h3>
+                                    <p><t t-out="product.product_tmpl_id.digitux_short_specs or 'Producto tecnico Digitux.'"/></p>
+                                    <div class="digitux-product-meta">
+                                        <span>Garantia <t t-out="product.product_tmpl_id.digitux_warranty_months"/> meses</span>
+                                        <span><t t-out="product.product_tmpl_id.digitux_socket or product.product_tmpl_id.digitux_ram_type or 'Listo para web'"/></span>
+                                    </div>
+                                    <div class="digitux-price"><t t-out="'%.2f EUR' % product.lst_price"/></div>
+                                    <a t-att-href="'/shop/product/%s' % product.product_tmpl_id.id" class="btn btn-sm btn-primary">Ver producto</a>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </section>
+
+                <section class="container digitux-section">
+                    <div class="digitux-split-banner">
+                        <div class="digitux-banner-copy">
+                            <span class="digitux-badge dark">Porque esto encaja con el PDF</span>
+                            <h2>Digitux deja de trabajar a trozos: pedidos, CRM, presupuestos, stock y soporte quedan enlazados.</h2>
+                            <ul class="digitux-checklist">
+                                <li>Configurador que crea build, presupuesto y oportunidad CRM.</li>
+                                <li>Comparador con contexto tecnico y alertas de precio.</li>
+                                <li>RMA publico con seguimiento desde portal cliente.</li>
+                                <li>Logistica presentada con GLS y DHL segun zona.</li>
+                            </ul>
+                            <div class="digitux-actions">
+                                <a href="/digitux/comparador" class="btn btn-primary">Abrir comparador</a>
+                                <a href="/digitux/rma" class="btn btn-outline-primary">Ver postventa</a>
+                            </div>
+                        </div>
+                        <div class="digitux-banner-stack">
+                            <div class="digitux-banner-photo">
+                                <img src="/digitux_web/static/src/img/warehouse-aisle.jpg" alt="Logistica Digitux"/>
+                            </div>
+                            <div class="digitux-banner-note">
+                                <span class="digitux-eyebrow">Operacion</span>
+                                <strong>Menos trabajo manual, mas trazabilidad.</strong>
+                                <p>Ese era el cuello de botella principal del caso y es donde la personalizacion de Odoo mas valor aporta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="configurator" name="Digitux Configurator">
+        <t t-call="website.layout">
+            <div id="wrap" class="digitux-page light">
+                <section class="digitux-page-head">
+                    <div class="container">
+                        <span class="digitux-badge">Configurador PC</span>
+                        <h1>Crea un PC compatible y recibe presupuesto automatico.</h1>
+                        <p>El formulario genera una configuracion interna, un presupuesto de venta y una oportunidad CRM.</p>
+                        <div class="digitux-inline-pills">
+                            <span>Compatibilidad tecnica</span>
+                            <span>Presupuesto inmediato</span>
+                            <span>Seguimiento comercial</span>
+                        </div>
+                    </div>
+                </section>
+                <section class="container digitux-section">
+                    <div class="digitux-utility-grid">
+                        <div class="digitux-utility-card">
+                            <strong>1. Elige piezas</strong>
+                            <p>Procesador, placa, RAM, GPU, almacenamiento y perifericos.</p>
+                        </div>
+                        <div class="digitux-utility-card">
+                            <strong>2. Odoo calcula</strong>
+                            <p>Compatibilidad, potencia recomendada y presupuesto comercial.</p>
+                        </div>
+                        <div class="digitux-utility-card">
+                            <strong>3. El equipo vende</strong>
+                            <p>Se crea la oportunidad CRM para que el comercial remate la operacion.</p>
+                        </div>
+                    </div>
+                    <form class="digitux-form-card" method="post" action="/digitux/configurador">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="row g-4">
+                            <div class="col-lg-4">
+                                <label>Nombre</label>
+                                <input class="form-control" name="name" required="required" placeholder="Nombre del cliente"/>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Email</label>
+                                <input class="form-control" type="email" name="email" required="required" placeholder="cliente@email.com"/>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Telefono</label>
+                                <input class="form-control" name="phone" placeholder="Opcional"/>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Uso previsto</label>
+                                <select class="form-select" name="use_case">
+                                    <option value="gaming">Gaming</option>
+                                    <option value="office">Oficina/estudio</option>
+                                    <option value="design">Diseño/edicion</option>
+                                    <option value="ai">IA/desarrollo</option>
+                                </select>
+                            </div>
+                            <t t-foreach="component_types" t-as="ctype">
+                                <div class="col-lg-4">
+                                    <label><t t-out="ctype[1]"/></label>
+                                    <select class="form-select" t-att-name="'component_%s' % ctype[0]">
+                                        <option value="">No seleccionar</option>
+                                        <t t-foreach="components.get(ctype[0])" t-as="product">
+                                            <option t-att-value="product.id">
+                                                <t t-out="product.display_name"/> · <t t-out="'%.2f EUR' % product.lst_price"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </t>
+                            <div class="col-12">
+                                <label>Notas</label>
+                                <textarea class="form-control" name="notes" rows="3" placeholder="Preferencias, presupuesto maximo o necesidades concretas"></textarea>
+                            </div>
+                            <div class="col-12 d-flex gap-2 flex-wrap">
+                                <button class="btn btn-primary btn-lg" type="submit">Crear configuracion y presupuesto</button>
+                                <a class="btn btn-outline-secondary btn-lg" href="/digitux/comparador">Comparar antes de elegir</a>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="configurator_success" name="Digitux Configurator Success">
+        <t t-call="website.layout">
+            <div id="wrap" class="digitux-page light">
+                <section class="container digitux-section">
+                    <div class="digitux-success-card">
+                        <span class="digitux-badge dark">Configuracion creada</span>
+                        <h1><t t-out="build.name"/></h1>
+                        <p>Compatibilidad calculada: <strong><t t-out="build.compatibility_score"/>%</strong></p>
+                        <pre class="digitux-notes"><t t-out="build.compatibility_notes"/></pre>
+                        <t t-if="order">
+                            <p>Presupuesto generado en Odoo: <strong><t t-out="order.name"/></strong></p>
+                        </t>
+                        <a href="/digitux" class="btn btn-primary">Volver a Digitux</a>
+                        <a href="/my/digitux" class="btn btn-outline-primary">Ir al portal</a>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="comparator" name="Digitux Comparator">
+        <t t-call="website.layout">
+            <div id="wrap" class="digitux-page light">
+                <section class="digitux-page-head compact">
+                    <div class="container">
+                        <span class="digitux-badge">Comparador</span>
+                        <h1>Compara productos tecnicos antes de comprar.</h1>
+                        <p>Pon varias referencias lado a lado y usa datos utiles para decidir mejor.</p>
+                    </div>
+                </section>
+                <section class="container digitux-section">
+                    <form class="digitux-filter-card" method="get" action="/digitux/comparador">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-lg-3">
+                                <label>Tipo</label>
+                                <select class="form-select" name="component_type" onchange="this.form.submit()">
+                                    <t t-foreach="component_types" t-as="ctype">
+                                        <option t-att-value="ctype[0]" t-att-selected="'selected' if ctype[0] == component_type else None"><t t-out="ctype[1]"/></option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="col-lg-7">
+                                <label>Productos</label>
+                                <select class="form-select" name="products" multiple="multiple" size="4">
+                                    <t t-foreach="all_products" t-as="product">
+                                        <option t-att-value="product.id" t-att-selected="'selected' if product in selected_products else None"><t t-out="product.display_name"/></option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-primary w-100" type="submit">Comparar</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="digitux-compare-grid mt-4">
+                        <t t-foreach="selected_products" t-as="product">
+                            <div class="digitux-compare-card">
+                                <span class="digitux-product-type"><t t-out="product.product_tmpl_id.digitux_component_type"/></span>
+                                <h3><t t-out="product.display_name"/></h3>
+                                <p><t t-out="product.product_tmpl_id.digitux_short_specs or 'Sin especificaciones.'"/></p>
+                                <ul>
+                                    <li><strong>Precio:</strong> <t t-out="'%.2f EUR' % product.lst_price"/></li>
+                                    <li><strong>Garantia:</strong> <t t-out="product.product_tmpl_id.digitux_warranty_months"/> meses</li>
+                                    <li><strong>Socket:</strong> <t t-out="product.product_tmpl_id.digitux_socket or '-'"/></li>
+                                    <li><strong>RAM:</strong> <t t-out="product.product_tmpl_id.digitux_ram_type or '-'"/></li>
+                                    <li><strong>W:</strong> <t t-out="product.product_tmpl_id.digitux_power_watts or '-'"/></li>
+                                </ul>
+                                <form method="post" action="/digitux/alerta-precio" class="digitux-inline-form">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <input type="hidden" name="product_id" t-att-value="product.id"/>
+                                    <input class="form-control form-control-sm" name="email" type="email" placeholder="email" required="required"/>
+                                    <input class="form-control form-control-sm" name="target_price" placeholder="precio objetivo" required="required"/>
+                                    <button class="btn btn-sm btn-outline-primary" type="submit">Crear alerta</button>
+                                </form>
+                            </div>
+                        </t>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="rma_form" name="Digitux RMA Form">
+        <t t-call="website.layout">
+            <div id="wrap" class="digitux-page light">
+                <section class="digitux-page-head compact">
+                    <div class="container">
+                        <span class="digitux-badge">Postventa</span>
+                        <h1>Solicitud de garantia o devolucion RMA.</h1>
+                        <p>La incidencia entra en Odoo con trazabilidad y puede seguirse desde portal.</p>
+                    </div>
+                </section>
+                <section class="container digitux-section">
+                    <form class="digitux-form-card" method="post" action="/digitux/rma">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <t t-if="error"><div class="alert alert-danger"><t t-out="error"/></div></t>
+                        <div class="row g-4">
+                            <div class="col-lg-4"><label>Nombre</label><input class="form-control" name="name" required="required"/></div>
+                            <div class="col-lg-4"><label>Email</label><input class="form-control" type="email" name="email" required="required"/></div>
+                            <div class="col-lg-4"><label>Telefono</label><input class="form-control" name="phone"/></div>
+                            <div class="col-lg-6"><label>Producto</label><select class="form-select" name="product_id" required="required"><t t-foreach="products" t-as="product"><option t-att-value="product.id"><t t-out="product.display_name"/></option></t></select></div>
+                            <div class="col-lg-6"><label>Numero de pedido Odoo</label><input class="form-control" name="order_name" placeholder="Opcional: S00001"/></div>
+                            <div class="col-lg-4"><label>Incidencia</label><select class="form-select" name="fault_type"><option value="dead_on_arrival">No funciona al recibirlo</option><option value="performance">Rendimiento inferior</option><option value="physical">Daño fisico</option><option value="wrong_item">Producto equivocado</option><option value="other">Otro</option></select></div>
+                            <div class="col-lg-4"><label>Solucion</label><select class="form-select" name="requested_solution"><option value="repair">Reparacion</option><option value="replace">Sustitucion</option><option value="refund">Reembolso</option><option value="diagnosis">Diagnostico tecnico</option></select></div>
+                            <div class="col-lg-4"><label>Transporte</label><select class="form-select" name="courier"><option value="gls">GLS Europa</option><option value="dhl">DHL internacional</option><option value="customer">Entrega por cliente</option></select></div>
+                            <div class="col-12"><label>Direccion de recogida</label><textarea class="form-control" name="pickup_address" rows="2"></textarea></div>
+                            <div class="col-12"><label>Descripcion del problema</label><textarea class="form-control" name="description" rows="4" required="required"></textarea></div>
+                            <div class="col-12"><button class="btn btn-primary btn-lg" type="submit">Enviar solicitud RMA</button></div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="rma_success" name="Digitux RMA Success">
+        <t t-call="website.layout">
+            <div id="wrap" class="digitux-page light">
+                <section class="container digitux-section">
+                    <div class="digitux-success-card">
+                        <span class="digitux-badge dark">RMA enviada</span>
+                        <h1><t t-out="rma.name"/></h1>
+                        <p>Producto: <strong><t t-out="rma.product_id.display_name"/></strong></p>
+                        <p>Estado: <strong><t t-out="rma.state"/></strong></p>
+                        <a href="/my/digitux" class="btn btn-primary">Ver portal</a>
+                        <a href="/digitux" class="btn btn-outline-primary">Volver a la web</a>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="price_alert_success" name="Digitux Price Alert Success">
+        <t t-call="website.layout">
+            <div id="wrap" class="digitux-page light">
+                <section class="container digitux-section">
+                    <div class="digitux-success-card">
+                        <span class="digitux-badge dark">Alerta creada</span>
+                        <h1>Te avisaremos si baja de precio.</h1>
+                        <p><strong><t t-out="alert.product_id.display_name"/></strong> · objetivo <strong><t t-out="'%.2f EUR' % alert.target_price"/></strong></p>
+                        <a href="/digitux/comparador" class="btn btn-primary">Volver al comparador</a>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="shipping" name="Digitux Shipping">
+        <t t-call="website.layout">
+            <div id="wrap" class="digitux-page light">
+                <section class="digitux-page-head compact">
+                    <div class="container">
+                        <span class="digitux-badge">Logistica</span>
+                        <h1>Estimador de envios Digitux.</h1>
+                        <p>Una interfaz simple para explicar plazos y rango de costes segun transportista y zona.</p>
+                    </div>
+                </section>
+                <section class="container digitux-section">
+                    <div class="digitux-shipping-grid">
+                        <form class="digitux-form-card slim" method="get" action="/digitux/envio">
+                            <label>Transportista</label>
+                            <select class="form-select" name="carrier">
+                                <option value="gls" t-att-selected="'selected' if carrier == 'gls' else None">GLS</option>
+                                <option value="dhl" t-att-selected="'selected' if carrier == 'dhl' else None">DHL</option>
+                            </select>
+                            <label>Zona</label>
+                            <select class="form-select" name="zone">
+                                <option value="espana" t-att-selected="'selected' if zone == 'espana' else None">España</option>
+                                <option value="europa_cercana" t-att-selected="'selected' if zone == 'europa_cercana' else None">Europa cercana</option>
+                                <option value="europa_lejana" t-att-selected="'selected' if zone == 'europa_lejana' else None">Europa lejana</option>
+                                <option value="mundial" t-att-selected="'selected' if zone == 'mundial' else None">Mundial</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary mt-3">Calcular</button>
+                        </form>
+                        <div class="digitux-shipping-result">
+                            <span class="digitux-badge dark">Resultado</span>
+                            <h2><t t-out="delivery_time"/></h2>
+                            <p>Coste estimado: <strong><t t-out="delivery_price"/></strong></p>
+                            <p>Alcance: <strong><t t-out="scope"/></strong></p>
+                            <p class="text-muted">La tarifa final puede ajustarse segun peso, destino y transportista.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

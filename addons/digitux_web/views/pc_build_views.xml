@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_digitux_pc_build_tree" model="ir.ui.view">
+        <field name="name">digitux.pc.build.tree</field>
+        <field name="model">digitux.pc.build</field>
+        <field name="arch" type="xml">
+            <tree string="Configuraciones PC" decoration-success="state == 'quoted'" decoration-muted="state == 'cancel'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="use_case"/>
+                <field name="total_amount" widget="monetary"/>
+                <field name="compatibility_score"/>
+                <field name="sale_order_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_digitux_pc_build_form" model="ir.ui.view">
+        <field name="name">digitux.pc.build.form</field>
+        <field name="model">digitux.pc.build</field>
+        <field name="arch" type="xml">
+            <form string="Configuración PC">
+                <header>
+                    <button name="action_create_sale_order" type="object" string="Crear presupuesto" class="btn-primary" invisible="sale_order_id"/>
+                    <button name="action_create_crm_lead" type="object" string="Crear oportunidad" invisible="crm_lead_id"/>
+                    <button name="action_reset_draft" type="object" string="Volver a borrador" invisible="state == 'draft'"/>
+                    <button name="action_cancel" type="object" string="Cancelar" invisible="state == 'cancel'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,quoted,won,cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_create_sale_order" icon="fa-shopping-cart" invisible="not sale_order_id">
+                            <field name="sale_order_id" widget="statinfo" string="Presupuesto"/>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="action_create_crm_lead" icon="fa-handshake-o" invisible="not crm_lead_id">
+                            <field name="crm_lead_id" widget="statinfo" string="CRM"/>
+                        </button>
+                    </div>
+                    <h1><field name="name" readonly="1"/></h1>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="use_case"/>
+                        </group>
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="total_amount" widget="monetary"/>
+                            <field name="compatibility_score" widget="progressbar"/>
+                            <field name="recommended_power_watts"/>
+                            <field name="sale_order_id" readonly="1"/>
+                            <field name="crm_lead_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Componentes">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id"/>
+                                    <field name="component_type"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price" widget="monetary"/>
+                                    <field name="subtotal" widget="monetary"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Compatibilidad">
+                            <field name="compatibility_notes" nolabel="1" readonly="1"/>
+                        </page>
+                        <page string="Notas cliente">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_digitux_pc_build_kanban" model="ir.ui.view">
+        <field name="name">digitux.pc.build.kanban</field>
+        <field name="model">digitux.pc.build</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="total_amount"/>
+                <field name="compatibility_score"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                            <div><field name="partner_id"/></div>
+                            <div>Compatibilidad: <field name="compatibility_score"/>%</div>
+                            <div>Total: <field name="total_amount"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_digitux_pc_build_search" model="ir.ui.view">
+        <field name="name">digitux.pc.build.search</field>
+        <field name="model">digitux.pc.build</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="sale_order_id"/>
+                <filter name="draft" string="Borrador" domain="[('state', '=', 'draft')]"/>
+                <filter name="quoted" string="Presupuestadas" domain="[('state', '=', 'quoted')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_state" string="Estado" context="{'group_by': 'state'}"/>
+                    <filter name="group_use_case" string="Uso" context="{'group_by': 'use_case'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_digitux_pc_build" model="ir.actions.act_window">
+        <field name="name">Configurador PC</field>
+        <field name="res_model">digitux.pc.build</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'search_default_group_state': 1}</field>
+    </record>
+</odoo>

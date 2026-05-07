@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_digitux_price_alert_tree" model="ir.ui.view">
+        <field name="name">digitux.price.alert.tree</field>
+        <field name="model">digitux.price.alert</field>
+        <field name="arch" type="xml">
+            <tree string="Alertas de precio">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="email"/>
+                <field name="product_id"/>
+                <field name="current_price" widget="monetary"/>
+                <field name="target_price" widget="monetary"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_digitux_price_alert_form" model="ir.ui.view">
+        <field name="name">digitux.price.alert.form</field>
+        <field name="model">digitux.price.alert</field>
+        <field name="arch" type="xml">
+            <form string="Alerta de precio">
+                <header>
+                    <button name="action_mark_notified" type="object" string="Marcar notificada" class="btn-primary" invisible="state != 'active'"/>
+                    <button name="action_cancel" type="object" string="Cancelar" invisible="state == 'cancel'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="active,notified,cancel"/>
+                </header>
+                <sheet>
+                    <h1><field name="name" readonly="1"/></h1>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="email"/>
+                            <field name="product_id"/>
+                        </group>
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="current_price" widget="monetary"/>
+                            <field name="target_price" widget="monetary"/>
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Notas internas"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_digitux_stock_alert_tree" model="ir.ui.view">
+        <field name="name">digitux.stock.alert.tree</field>
+        <field name="model">digitux.stock.alert</field>
+        <field name="arch" type="xml">
+            <tree string="Alertas de stock" decoration-danger="current_qty &lt; min_qty" decoration-success="state == 'purchase_created'">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="current_qty"/>
+                <field name="min_qty"/>
+                <field name="qty_to_order"/>
+                <field name="vendor_id"/>
+                <field name="purchase_order_id"/>
+                <field name="priority"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_digitux_stock_alert_form" model="ir.ui.view">
+        <field name="name">digitux.stock.alert.form</field>
+        <field name="model">digitux.stock.alert</field>
+        <field name="arch" type="xml">
+            <form string="Alerta de stock">
+                <header>
+                    <button name="action_create_purchase_order" type="object" string="Crear RFQ" class="btn-primary" invisible="state == 'purchase_created'"/>
+                    <button name="action_watch" type="object" string="Vigilar" invisible="state == 'watching'"/>
+                    <button name="action_close" type="object" string="Cerrar" invisible="state == 'closed'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="watching,purchase_created,closed"/>
+                </header>
+                <sheet>
+                    <h1><field name="name" readonly="1"/></h1>
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="vendor_id"/>
+                            <field name="priority"/>
+                        </group>
+                        <group>
+                            <field name="current_qty"/>
+                            <field name="min_qty"/>
+                            <field name="qty_to_order"/>
+                            <field name="purchase_order_id" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_digitux_price_alert_search" model="ir.ui.view">
+        <field name="name">digitux.price.alert.search</field>
+        <field name="model">digitux.price.alert</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <filter name="active" string="Activas" domain="[('state', '=', 'active')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_state" string="Estado" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_digitux_stock_alert_search" model="ir.ui.view">
+        <field name="name">digitux.stock.alert.search</field>
+        <field name="model">digitux.stock.alert</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id"/>
+                <field name="vendor_id"/>
+                <filter name="watching" string="Vigilando" domain="[('state', '=', 'watching')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_state" string="Estado" context="{'group_by': 'state'}"/>
+                    <filter name="group_priority" string="Prioridad" context="{'group_by': 'priority'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_digitux_price_alert" model="ir.actions.act_window">
+        <field name="name">Alertas de precio</field>
+        <field name="res_model">digitux.price.alert</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_digitux_stock_alert" model="ir.actions.act_window">
+        <field name="name">Alertas de stock</field>
+        <field name="res_model">digitux.stock.alert</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_digitux_stock_control_user,digitux.stock.control,model_digitux_stock_control,base.group_user,1,1,1,1

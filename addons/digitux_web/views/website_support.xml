@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="support_form" name="Digitux Support Form">
+        <t t-call="website.layout">
+            <div id="wrap" class="digitux-page light">
+                <section class="digitux-page-head compact">
+                    <div class="container">
+                        <span class="digitux-badge">Soporte</span>
+                        <h1>Abre un ticket de soporte Digitux.</h1>
+                        <p>Centraliza incidencias, dudas y seguimiento comercial en el CRM desde la propia web.</p>
+                    </div>
+                </section>
+                <section class="container digitux-section">
+                    <form class="digitux-form-card" method="post" action="/digitux/soporte">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <t t-if="error">
+                            <div class="alert alert-danger">
+                                <t t-out="error"/>
+                            </div>
+                        </t>
+                        <div class="row g-4">
+                            <div class="col-lg-4">
+                                <label>Nombre</label>
+                                <input class="form-control" name="name" required="required" placeholder="Nombre del cliente" t-att-value="form_values.get('name', '')"/>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Email</label>
+                                <input class="form-control" type="email" name="email" required="required" placeholder="cliente@email.com" t-att-value="form_values.get('email', '')"/>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Telefono</label>
+                                <input class="form-control" name="phone" placeholder="Opcional" t-att-value="form_values.get('phone', '')"/>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Asunto</label>
+                                <input class="form-control" name="subject" required="required" placeholder="Describe el motivo del ticket" t-att-value="form_values.get('subject', '')"/>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Prioridad</label>
+                                <select class="form-select" name="priority">
+                                    <option value="0" t-att-selected="'selected' if form_values.get('priority') == '0' else None">Baja</option>
+                                    <option value="1" t-att-selected="'selected' if form_values.get('priority', '1') == '1' else None">Media</option>
+                                    <option value="2" t-att-selected="'selected' if form_values.get('priority') == '2' else None">Alta</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Pedido relacionado</label>
+                                <input class="form-control" name="order_name" placeholder="Opcional: S00001" t-att-value="form_values.get('order_name', '')"/>
+                            </div>
+                            <div class="col-12">
+                                <label>Descripcion</label>
+                                <textarea class="form-control" name="description" rows="5" required="required" placeholder="Explica la incidencia, duda o seguimiento que necesitas."><t t-out="form_values.get('description', '')"/></textarea>
+                            </div>
+                            <div class="col-12 d-flex gap-2 flex-wrap">
+                                <button class="btn btn-primary btn-lg" type="submit">Crear ticket</button>
+                                <a class="btn btn-outline-secondary btn-lg" href="/digitux/rma">Ir a RMA</a>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="support_success" name="Digitux Support Success">
+        <t t-call="website.layout">
+            <div id="wrap" class="digitux-page light">
+                <section class="container digitux-section">
+                    <div class="digitux-success-card">
+                        <span class="digitux-badge dark">Ticket creado</span>
+                        <h1><t t-out="ticket.reference"/></h1>
+                        <p>Asunto: <strong><t t-out="ticket.name"/></strong></p>
+                        <p>Estado inicial: <strong><t t-out="ticket.state"/></strong></p>
+                        <a href="/digitux/soporte" class="btn btn-primary">Crear otro ticket</a>
+                        <a href="/my/digitux/tickets" class="btn btn-outline-primary">Ver portal</a>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

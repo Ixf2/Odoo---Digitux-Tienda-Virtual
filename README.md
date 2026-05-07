@@ -40,7 +40,7 @@ The entire project runs locally using Docker.
 
 # Technologies Used
 
-- Odoo
+- Odoo 17 Community
 - Docker
 - Docker Compose
 - Python
@@ -72,10 +72,15 @@ Odoo---Digitux-Tienda-Virtual/
 │   ├── digitux_inventory/
 │   ├── digitux_crm/
 │   ├── digitux_purchase/
-│   └── digitux_ecommerce/
+│   ├── digitux_ecommerce/
+│   └── digitux_web/
 │
 ├── docker-compose.yml
 ├── README.md
+├── start.sh
+├── start_windows.bat
+├── reset.sh
+├── update_module.sh
 └── requirements.txt
 ```
 
@@ -152,6 +157,97 @@ Developed by:
 
 ---
 
+# Custom Digitux Web Module
+
+The project includes a fully customized module called `digitux_web`, focused on improving the customer experience and integrating ERP functionalities directly into the website.
+
+Main implemented models:
+
+- `digitux.pc.build`
+- `digitux.pc.build.line`
+- `digitux.rma.request`
+- `digitux.price.alert`
+- `digitux.stock.alert`
+
+Integrated with standard Odoo models:
+
+- `product.template`
+- `product.product`
+- `sale.order`
+- `crm.lead`
+- `purchase.order`
+- `res.partner`
+- `website`
+- `portal`
+
+---
+
+# Implemented Website Features
+
+## Public Routes
+
+- `/digitux` → Main landing page.
+- `/digitux/configurador` → PC configurator with automatic quotation and CRM opportunity creation.
+- `/digitux/comparador` → Product comparison system.
+- `/digitux/rma` → Public warranty and return form.
+- `/digitux/envio` → GLS/DHL shipping estimator.
+- `/my/digitux` → Customer portal for builds and RMA requests.
+
+---
+
+# Views and Interface
+
+The module includes multiple Odoo views:
+
+- Tree/List views
+- Form views
+- Kanban views
+- Search views
+
+It also extends the standard Odoo product form using XML inheritance to include custom Digitux technical specifications.
+
+---
+
+# Menus and Backend Actions
+
+A custom backend menu called `Digitux` was implemented with multiple submenus:
+
+- Operations
+- Catalog
+- Purchases
+- CRM management
+- Alerts and notifications
+
+---
+
+# Controllers and Portal
+
+The project includes:
+
+- Public web controllers
+- Customer portal controllers
+- Functional website forms
+- CSRF token protection
+- Integration between website and ERP backend
+
+---
+
+# Functional Business Logic
+
+The system simulates a real technological online store environment including:
+
+- Product stock management
+- Sales workflows
+- CRM integration
+- Purchase management
+- Shipping estimation
+- Product comparison
+- RMA and warranty requests
+- Customer alerts
+- Website and portal integration
+
+---
+
 # Project Installation
 
 ## 1. Clone the repository
@@ -170,10 +266,18 @@ cd Odoo---Digitux-Tienda-Virtual
 
 ---
 
-## 3. Start Docker containers
+## 3. Recommended Startup
+
+### Linux/macOS
 
 ```bash
-docker compose up -d
+./start.sh
+```
+
+### Windows
+
+```bat
+start_windows.bat
 ```
 
 ---
@@ -184,6 +288,46 @@ Open your browser and go to:
 
 ```txt
 http://localhost:8069
+```
+
+---
+
+# Database Information
+
+The default database name is:
+
+```txt
+digitux
+```
+
+If you want to reset the environment and start from scratch:
+
+```bash
+./reset.sh
+./start.sh
+```
+
+---
+
+# Useful Commands
+
+## Update the custom module
+
+```bash
+./update_module.sh
+```
+
+## View Docker logs
+
+```bash
+docker compose logs -f odoo
+```
+
+## Force clean Docker environment
+
+```bash
+docker compose down -v
+./start.sh
 ```
 
 ---
@@ -216,27 +360,61 @@ services:
 # Implemented Features
 
 - Custom model creation.
-- Module integration.
-- Custom menus.
-- XML views.
+- Odoo module integration.
+- Website and ERP synchronization.
+- Custom menus and actions.
+- XML inherited views.
 - Forms and list views.
 - Product management.
 - Customer management.
 - Supplier management.
-- Order management.
+- CRM integration.
+- Sales automation.
+- Shipping estimation.
+- Product comparison tools.
+- Customer portal.
+- Warranty and RMA system.
 - Full ERP integration.
+
+---
+
+# Fixed Issue in Version v3
+
+This version fixes the installation error:
+
+```text
+TypeError: Type of related field digitux.price.alert.current_price is inconsistent with product.product.lst_price
+```
+
+Cause of the issue:
+
+In Odoo 17, the field `product.product.lst_price` is defined as a `Float`, while the custom field `current_price` had originally been declared as `Monetary`.
+
+Solution implemented in v3:
+
+- `current_price` changed to `Float`
+- `target_price` remains `Monetary`
+
+To avoid reusing corrupted databases from previous failed installations, it is recommended to run:
+
+```bash
+docker compose down -v
+./start.sh
+```
 
 ---
 
 # Work Planning
 
 ## Day 1
+
 - Project organization.
 - Needs analysis.
 - Task distribution.
 - Module integration planning.
 
 ## Day 2
+
 - Research on Odoo models.
 - Technical testing with Docker.
 - Environment configuration.
@@ -263,6 +441,9 @@ services:
 - Partial business process automation.
 - Collaborative development using Git and GitHub.
 - Functional Docker implementation.
+- Website and ERP integration.
+- Customer portal implementation.
+- Realistic eCommerce workflow simulation.
 
 ---
 
@@ -279,6 +460,9 @@ Academic project currently under development.
 - Ariadna
 - César
 - Christopher
+
+GitHub:
+- Ixf2
 
 ---
 

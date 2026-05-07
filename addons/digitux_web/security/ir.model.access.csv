@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_digitux_pc_build_user,digitux.pc.build user,model_digitux_pc_build,base.group_user,1,1,1,1
+access_digitux_pc_build_portal,digitux.pc.build portal,model_digitux_pc_build,base.group_portal,1,0,0,0
+access_digitux_pc_build_line_user,digitux.pc.build.line user,model_digitux_pc_build_line,base.group_user,1,1,1,1
+access_digitux_pc_build_line_portal,digitux.pc.build.line portal,model_digitux_pc_build_line,base.group_portal,1,0,0,0
+access_digitux_rma_request_user,digitux.rma.request user,model_digitux_rma_request,base.group_user,1,1,1,1
+access_digitux_rma_request_portal,digitux.rma.request portal,model_digitux_rma_request,base.group_portal,1,0,0,0
+access_digitux_price_alert_user,digitux.price.alert user,model_digitux_price_alert,base.group_user,1,1,1,1
+access_digitux_stock_alert_user,digitux.stock.alert user,model_digitux_stock_alert,base.group_user,1,1,1,1
+access_digitux_sale_followup_user,digitux.sale.followup user,model_digitux_sale_followup,base.group_user,1,1,1,1
+access_digitux_purchase_request_user,digitux.purchase.request user,model_digitux_purchase_request,base.group_user,1,1,1,1
+access_digitux_purchase_request_portal,digitux.purchase.request portal,model_digitux_purchase_request,base.group_portal,1,0,0,0
+access_digitux_stock_control_user,digitux.stock.control user,model_digitux_stock_control,base.group_user,1,1,1,1
+access_digitux_crm_ticket_user,digitux.crm.ticket user,model_digitux_crm_ticket,base.group_user,1,1,1,1
+access_digitux_crm_ticket_portal,digitux.crm.ticket portal,model_digitux_crm_ticket,base.group_portal,1,0,0,0
