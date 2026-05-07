@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_breadcrumbs_digitux" inherit_id="portal.portal_breadcrumbs" priority="35">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name in ('digitux_portal', 'digitux_portal_build', 'digitux_portal_rma', 'digitux_portal_followups', 'digitux_portal_purchase_requests', 'digitux_portal_purchase_request', 'digitux_portal_tickets', 'digitux_portal_ticket')" t-attf-class="breadcrumb-item #{'active ' if page_name == 'digitux_portal' else ''}">
+                <a t-if="page_name != 'digitux_portal'" t-attf-href="/my/digitux?{{ keep_query() }}">Portal Digitux</a>
+                <t t-else="">Portal Digitux</t>
+            </li>
+            <li t-if="page_name == 'digitux_portal_followups'" class="breadcrumb-item active">
+                Seguimientos comerciales
+            </li>
+            <li t-if="page_name == 'digitux_portal_purchase_requests' or page_name == 'digitux_portal_purchase_request'" t-attf-class="breadcrumb-item #{'active ' if page_name == 'digitux_portal_purchase_requests' else ''}">
+                <a t-if="page_name == 'digitux_portal_purchase_request'" t-attf-href="/my/digitux/compras?{{ keep_query() }}">Solicitudes de compra</a>
+                <t t-else="">Solicitudes de compra</t>
+            </li>
+            <li t-if="page_name == 'digitux_portal_tickets' or page_name == 'digitux_portal_ticket'" t-attf-class="breadcrumb-item #{'active ' if page_name == 'digitux_portal_tickets' else ''}">
+                <a t-if="page_name == 'digitux_portal_ticket'" t-attf-href="/my/digitux/tickets?{{ keep_query() }}">Tickets de soporte</a>
+                <t t-else="">Tickets de soporte</t>
+            </li>
+            <li t-if="build" class="breadcrumb-item active">
+                <t t-out="build.name"/>
+            </li>
+            <li t-if="rma" class="breadcrumb-item active">
+                <t t-out="rma.name"/>
+            </li>
+            <li t-if="request_record" class="breadcrumb-item active">
+                <t t-out="request_record.name"/>
+            </li>
+            <li t-if="ticket" class="breadcrumb-item active">
+                <t t-out="ticket.reference"/>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_home_digitux" inherit_id="portal.portal_my_home" priority="35">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_service_category_enable" t-value="True"/>
+        </xpath>
+        <div id="portal_service_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/portal/static/src/img/portal-connection.svg'"/>
+                <t t-set="title">Portal Digitux</t>
+                <t t-set="text">Accede a builds, postventa, soporte y compras de la tienda.</t>
+                <t t-set="url" t-value="'/my/digitux'"/>
+                <t t-set="config_card" t-value="True"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/sale/static/src/img/bag.svg'"/>
+                <t t-set="title">Configuraciones PC</t>
+                <t t-set="text">Consulta presupuestos y montajes generados desde la web.</t>
+                <t t-set="url" t-value="'/my/digitux'"/>
+                <t t-set="placeholder_count" t-value="'digitux_build_count'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/portal/static/src/img/portal-connection.svg'"/>
+                <t t-set="title">RMA y garantias</t>
+                <t t-set="text">Sigue incidencias y devoluciones ligadas a tus pedidos.</t>
+                <t t-set="url" t-value="'/my/digitux'"/>
+                <t t-set="placeholder_count" t-value="'digitux_rma_count'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/sale/static/src/img/bag.svg'"/>
+                <t t-set="title">Seguimientos comerciales</t>
+                <t t-set="text">Consulta el estado comercial de presupuestos, contactos y oportunidades.</t>
+                <t t-set="url" t-value="'/my/digitux/seguimientos'"/>
+                <t t-set="placeholder_count" t-value="'digitux_followup_count'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/purchase/static/src/img/rfq.svg'"/>
+                <t t-set="title">Solicitudes de compra</t>
+                <t t-set="text">Revisa peticiones de compra y su paso a orden de proveedor.</t>
+                <t t-set="url" t-value="'/my/digitux/compras'"/>
+                <t t-set="placeholder_count" t-value="'digitux_purchase_request_count'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/purchase/static/src/img/calculator.svg'"/>
+                <t t-set="title">Tickets de soporte</t>
+                <t t-set="text">Sigue incidencias y respuestas ligadas al CRM de Digitux.</t>
+                <t t-set="url" t-value="'/my/digitux/tickets'"/>
+                <t t-set="placeholder_count" t-value="'digitux_ticket_count'"/>
+            </t>
+        </div>
+    </template>
+
+    <template id="portal_dashboard" name="Portal Digitux Dashboard">
+        <t t-call="portal.portal_layout">
+            <div class="container mt-4 mb-5">
+                <div class="digitux-portal-head">
+                    <h1>Portal Digitux</h1>
+                    <p>Consulta configuraciones, compras, tickets de soporte y postventa desde la misma base de datos.</p>
+                    <a href="/digitux/configurador" class="btn btn-primary">Nueva configuracion</a>
+                    <a href="/digitux/soporte" class="btn btn-outline-primary">Abrir soporte</a>
+                </div>
+                <div class="digitux-utility-grid mt-4">
+                    <div class="digitux-utility-card">
+                        <strong><t t-out="dashboard_counts['builds']"/></strong>
+                        <p>configuraciones registradas para tu cuenta</p>
+                    </div>
+                    <div class="digitux-utility-card">
+                        <strong><t t-out="dashboard_counts['rmas']"/></strong>
+                        <p>casos RMA y garantia en seguimiento</p>
+                    </div>
+                    <div class="digitux-utility-card">
+                        <strong><t t-out="dashboard_counts['followups']"/></strong>
+                        <p>seguimientos comerciales ligados a ventas y CRM</p>
+                    </div>
+                    <div class="digitux-utility-card">
+                        <strong><t t-out="dashboard_counts['purchase_requests']"/></strong>
+                        <p>solicitudes de compra visibles desde portal</p>
+                    </div>
+                    <div class="digitux-utility-card">
+                        <strong><t t-out="dashboard_counts['tickets']"/></strong>
+                        <p>tickets ligados al CRM y al soporte web</p>
+                    </div>
+                </div>
+                <div class="row g-4 mt-2">
+                    <div class="col-xl-6">
+                        <div class="digitux-portal-card">
+                            <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
+                                <h3>Configuraciones PC</h3>
+                                <a href="/digitux/configurador" class="btn btn-outline-primary btn-sm">Nueva</a>
+                            </div>
+                            <t t-if="builds">
+                                <table class="table table-hover">
+                                    <thead><tr><th>Referencia</th><th>Total</th><th>Estado</th></tr></thead>
+                                    <tbody>
+                                        <t t-foreach="builds" t-as="build">
+                                            <tr>
+                                                <td><a t-att-href="'/my/digitux/configuracion/%s' % build.id"><t t-out="build.name"/></a></td>
+                                                <td><t t-out="'%.2f EUR' % build.total_amount"/></td>
+                                                <td><t t-out="build.state"/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                            <t t-else=""><p>No tienes configuraciones todavia.</p></t>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="digitux-portal-card">
+                            <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
+                                <h3>RMA y garantias</h3>
+                                <a href="/digitux/rma" class="btn btn-outline-primary btn-sm">Nueva RMA</a>
+                            </div>
+                            <t t-if="rmas">
+                                <table class="table table-hover">
+                                    <thead><tr><th>Referencia</th><th>Producto</th><th>Estado</th></tr></thead>
+                                    <tbody>
+                                        <t t-foreach="rmas" t-as="rma">
+                                            <tr>
+                                                <td><a t-att-href="'/my/digitux/rma/%s' % rma.id"><t t-out="rma.name"/></a></td>
+                                                <td><t t-out="rma.product_id.display_name"/></td>
+                                                <td><t t-out="rma.state"/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                            <t t-else=""><p>No tienes solicitudes RMA todavia.</p></t>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="digitux-portal-card">
+                            <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
+                                <h3>Seguimientos comerciales</h3>
+                                <a href="/my/digitux/seguimientos" class="btn btn-outline-primary btn-sm">Ver todos</a>
+                            </div>
+                            <t t-if="followups">
+                                <table class="table table-hover">
+                                    <thead><tr><th>Referencia</th><th>Pedido</th><th>Producto</th><th>Estado</th></tr></thead>
+                                    <tbody>
+                                        <t t-foreach="followups" t-as="followup">
+                                            <tr>
+                                                <td><t t-out="followup.name"/></td>
+                                                <td><t t-out="followup.sale_order_id.name or '-'"/></td>
+                                                <td><t t-out="followup.product_id.display_name or '-'"/></td>
+                                                <td><t t-out="dict(followup._fields['state'].selection).get(followup.state)"/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                            <t t-else=""><p>No hay seguimientos comerciales para tu cuenta.</p></t>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="digitux-portal-card">
+                            <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
+                                <h3>Solicitudes de compra</h3>
+                                <a href="/my/digitux/compras" class="btn btn-outline-primary btn-sm">Ver todas</a>
+                            </div>
+                            <t t-if="purchase_requests">
+                                <table class="table table-hover">
+                                    <thead><tr><th>Referencia</th><th>Proveedor</th><th>Total</th><th>Estado</th></tr></thead>
+                                    <tbody>
+                                        <t t-foreach="purchase_requests" t-as="purchase_request">
+                                            <tr>
+                                                <td><a t-att-href="'/my/digitux/compra/%s' % purchase_request.id"><t t-out="purchase_request.name"/></a></td>
+                                                <td><t t-out="purchase_request.supplier_id.display_name or '-'"/></td>
+                                                <td><t t-out="'%.2f EUR' % purchase_request.total_estimated"/></td>
+                                                <td><t t-out="purchase_request.state"/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                            <t t-else=""><p>No hay solicitudes de compra para tu cuenta.</p></t>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="digitux-portal-card">
+                            <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
+                                <h3>Tickets de soporte</h3>
+                                <a href="/my/digitux/tickets" class="btn btn-outline-primary btn-sm">Ver todos</a>
+                            </div>
+                            <t t-if="tickets">
+                                <table class="table table-hover">
+                                    <thead><tr><th>Referencia</th><th>Asunto</th><th>Prioridad</th><th>Estado</th></tr></thead>
+                                    <tbody>
+                                        <t t-foreach="tickets" t-as="ticket">
+                                            <tr>
+                                                <td><a t-att-href="'/my/digitux/ticket/%s' % ticket.id"><t t-out="ticket.reference"/></a></td>
+                                                <td><t t-out="ticket.name"/></td>
+                                                <td><t t-out="ticket.priority"/></td>
+                                                <td><t t-out="ticket.state"/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                            <t t-else=""><p>No hay tickets de soporte para tu cuenta.</p></t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_followups" name="Portal Digitux Followups">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Seguimientos comerciales</t>
+            </t>
+            <div t-if="not followups" class="alert alert-warning" role="alert">
+                No hay seguimientos comerciales para tu cuenta.
+            </div>
+            <t t-if="followups" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Referencia</th>
+                        <th>Pedido</th>
+                        <th>Producto</th>
+                        <th class="text-end">Contacto</th>
+                        <th class="text-end">Estado</th>
+                    </tr>
+                </thead>
+                <t t-foreach="followups" t-as="followup">
+                    <tr>
+                        <td><t t-out="followup.name"/></td>
+                        <td><t t-out="followup.sale_order_id.name or '-'"/></td>
+                        <td><t t-out="followup.product_id.display_name or '-'"/></td>
+                        <td class="text-end"><t t-out="followup.contact_date or '-'"/></td>
+                        <td class="text-end"><t t-out="dict(followup._fields['state'].selection).get(followup.state)"/></td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_purchase_requests" name="Portal Digitux Purchase Requests">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Solicitudes de compra</t>
+            </t>
+            <div t-if="not purchase_requests" class="alert alert-warning" role="alert">
+                No tienes solicitudes de compra visibles en el portal.
+            </div>
+            <t t-if="purchase_requests" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Referencia</th>
+                        <th>Producto</th>
+                        <th>Proveedor</th>
+                        <th class="text-end">Total</th>
+                        <th class="text-end">Estado</th>
+                    </tr>
+                </thead>
+                <t t-foreach="purchase_requests" t-as="purchase_request">
+                    <tr>
+                        <td><a t-att-href="'/my/digitux/compra/%s' % purchase_request.id"><t t-out="purchase_request.name"/></a></td>
+                        <td><t t-out="purchase_request.product_id.display_name or '-'"/></td>
+                        <td><t t-out="purchase_request.supplier_id.display_name or '-'"/></td>
+                        <td class="text-end"><t t-out="'%.2f EUR' % purchase_request.total_estimated"/></td>
+                        <td class="text-end"><t t-out="purchase_request.state"/></td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_purchase_request_detail" name="Portal Digitux Purchase Request Detail">
+        <t t-call="portal.portal_layout">
+            <div class="container mt-4 mb-5">
+                <a href="/my/digitux/compras" class="btn btn-link px-0">Volver a solicitudes de compra</a>
+                <div class="digitux-portal-card">
+                    <h1><t t-out="request_record.name"/></h1>
+                    <p>Estado: <strong><t t-out="request_record.state"/></strong></p>
+                    <p>Producto: <strong><t t-out="request_record.product_id.display_name or '-'"/></strong></p>
+                    <p>Proveedor: <strong><t t-out="request_record.supplier_id.display_name or '-'"/></strong></p>
+                    <p>Cantidad: <strong><t t-out="request_record.quantity"/></strong></p>
+                    <p>Total estimado: <strong><t t-out="'%.2f EUR' % request_record.total_estimated"/></strong></p>
+                    <p>Fecha requerida: <strong><t t-out="request_record.required_date or '-'"/></strong></p>
+                    <p>Orden de compra: <strong><t t-out="request_record.purchase_order_id.name or '-'"/></strong></p>
+                    <h3>Notas</h3>
+                    <p><t t-out="request_record.notes or 'Sin notas adicionales.'"/></p>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_tickets" name="Portal Digitux Tickets">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Tickets de soporte</t>
+            </t>
+            <div t-if="not tickets" class="alert alert-warning" role="alert">
+                No hay tickets de soporte para tu cuenta.
+            </div>
+            <t t-if="tickets" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Referencia</th>
+                        <th>Asunto</th>
+                        <th class="text-end">Prioridad</th>
+                        <th class="text-end">Estado</th>
+                        <th class="text-end">Limite</th>
+                    </tr>
+                </thead>
+                <t t-foreach="tickets" t-as="ticket">
+                    <tr>
+                        <td><a t-att-href="'/my/digitux/ticket/%s' % ticket.id"><t t-out="ticket.reference"/></a></td>
+                        <td><t t-out="ticket.name"/></td>
+                        <td class="text-end"><t t-out="ticket.priority"/></td>
+                        <td class="text-end"><t t-out="ticket.state"/></td>
+                        <td class="text-end"><t t-out="ticket.date_deadline or '-'"/></td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_ticket_detail" name="Portal Digitux Ticket Detail">
+        <t t-call="portal.portal_layout">
+            <div class="container mt-4 mb-5">
+                <a href="/my/digitux/tickets" class="btn btn-link px-0">Volver a tickets de soporte</a>
+                <div class="digitux-portal-card">
+                    <h1><t t-out="ticket.reference"/></h1>
+                    <p>Asunto: <strong><t t-out="ticket.name"/></strong></p>
+                    <p>Estado: <strong><t t-out="ticket.state"/></strong></p>
+                    <p>Prioridad: <strong><t t-out="ticket.priority"/></strong></p>
+                    <p>Pedido relacionado: <strong><t t-out="ticket.sale_order_id.name or '-'"/></strong></p>
+                    <p>Fecha limite: <strong><t t-out="ticket.date_deadline or '-'"/></strong></p>
+                    <p>Caso CRM: <strong><t t-out="ticket.crm_lead_id.name or '-'"/></strong></p>
+                    <h3>Descripcion</h3>
+                    <p><t t-out="ticket.description"/></p>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_build_detail" name="Portal Digitux Build Detail">
+        <t t-call="portal.portal_layout">
+            <div class="container mt-4 mb-5">
+                <a href="/my/digitux" class="btn btn-link px-0">Volver al portal Digitux</a>
+                <div class="digitux-portal-card">
+                    <h1><t t-out="build.name"/></h1>
+                    <p>Estado: <strong><t t-out="build.state"/></strong></p>
+                    <p>Total estimado: <strong><t t-out="'%.2f EUR' % build.total_amount"/></strong></p>
+                    <p>Compatibilidad: <strong><t t-out="build.compatibility_score"/>%</strong></p>
+                    <pre class="digitux-notes"><t t-out="build.compatibility_notes"/></pre>
+                    <h3>Componentes</h3>
+                    <table class="table">
+                        <thead><tr><th>Tipo</th><th>Producto</th><th>Cantidad</th><th>Subtotal</th></tr></thead>
+                        <tbody>
+                            <t t-foreach="build.line_ids" t-as="line">
+                                <tr>
+                                    <td><t t-out="line.component_type"/></td>
+                                    <td><t t-out="line.product_id.display_name"/></td>
+                                    <td><t t-out="line.quantity"/></td>
+                                    <td><t t-out="'%.2f EUR' % line.subtotal"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_rma_detail" name="Portal Digitux RMA Detail">
+        <t t-call="portal.portal_layout">
+            <div class="container mt-4 mb-5">
+                <a href="/my/digitux" class="btn btn-link px-0">Volver al portal Digitux</a>
+                <div class="digitux-portal-card">
+                    <h1><t t-out="rma.name"/></h1>
+                    <p>Producto: <strong><t t-out="rma.product_id.display_name"/></strong></p>
+                    <p>Estado: <strong><t t-out="rma.state"/></strong></p>
+                    <p>En garantia: <strong><t t-out="'Si' if rma.in_warranty else 'No'"/></strong></p>
+                    <p>Fin garantia: <strong><t t-out="rma.warranty_limit_date or '-'"/></strong></p>
+                    <p>Solucion solicitada: <strong><t t-out="rma.requested_solution"/></strong></p>
+                    <h3>Descripcion</h3>
+                    <p><t t-out="rma.description"/></p>
+                    <h3>Diagnostico interno</h3>
+                    <p><t t-out="rma.diagnostic_notes or 'Pendiente de diagnostico.'"/></p>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

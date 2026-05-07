@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_vendor_pixelforge" model="res.partner">
+        <field name="name">PixelForge Supply Europe</field>
+        <field name="supplier_rank">1</field>
+        <field name="email">ventas@pixelforge.example</field>
+        <field name="phone">+34 900 210 310</field>
+    </record>
+
+    <record id="partner_vendor_creatorhub" model="res.partner">
+        <field name="name">CreatorHub Distribution</field>
+        <field name="supplier_rank">1</field>
+        <field name="email">canal@creatorhub.example</field>
+        <field name="phone">+34 900 220 320</field>
+    </record>
+
+    <record id="partner_vendor_peripheralworks" model="res.partner">
+        <field name="name">Peripheral Works Iberia</field>
+        <field name="supplier_rank">1</field>
+        <field name="email">partners@peripheralworks.example</field>
+        <field name="phone">+34 900 230 330</field>
+    </record>
+
+    <record id="public_category_gaming" model="product.public.category">
+        <field name="name">Gaming rigs</field>
+    </record>
+
+    <record id="public_category_creator" model="product.public.category">
+        <field name="name">Creator studio</field>
+    </record>
+
+    <record id="public_category_productivity" model="product.public.category">
+        <field name="name">Productividad</field>
+    </record>
+
+    <record id="public_category_streaming" model="product.public.category">
+        <field name="name">Streaming y setup</field>
+    </record>
+
+    <record id="public_category_cooling" model="product.public.category">
+        <field name="name">Cooling y airflow</field>
+    </record>
+
+    <record id="product_cpu_7800x3d" model="product.template">
+        <field name="name">AMD Ryzen 7 7800X3D</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">429.00</field>
+        <field name="standard_price">344.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">cpu</field>
+        <field name="digitux_socket">AM5</field>
+        <field name="digitux_ram_type">ddr5</field>
+        <field name="digitux_power_watts">120</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">CPU AM5 tope para gaming competitivo, excelente cache y consumo controlado.</field>
+    </record>
+
+    <record id="product_cpu_i7_14700kf" model="product.template">
+        <field name="name">Intel Core i7-14700KF</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">439.00</field>
+        <field name="standard_price">355.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_creator')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">cpu</field>
+        <field name="digitux_socket">LGA1700</field>
+        <field name="digitux_ram_type">ddr5</field>
+        <field name="digitux_power_watts">125</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_short_specs">CPU hibrida para multitarea, render y juegos con margen de overclock.</field>
+    </record>
+
+    <record id="product_cooler_ak620" model="product.template">
+        <field name="name">DeepCool AK620 Digital</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">89.00</field>
+        <field name="standard_price">61.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_cooling')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">cooler</field>
+        <field name="digitux_form_factor">na</field>
+        <field name="digitux_power_watts">6</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_short_specs">Refrigeracion por aire premium con display frontal y gran rendimiento termico.</field>
+    </record>
+
+    <record id="product_cooler_h100i" model="product.template">
+        <field name="name">Corsair iCUE H100i Elite Capellix XT</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">189.00</field>
+        <field name="standard_price">141.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming'), ref('public_category_cooling')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">cooler</field>
+        <field name="digitux_form_factor">na</field>
+        <field name="digitux_power_watts">9</field>
+        <field name="digitux_warranty_months">60</field>
+        <field name="digitux_short_specs">AIO de 240 mm con RGB, ideal para builds premium y flujo limpio.</field>
+    </record>
+
+    <record id="product_board_b650_tomahawk" model="product.template">
+        <field name="name">MSI MAG B650 Tomahawk WiFi</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">249.00</field>
+        <field name="standard_price">181.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">motherboard</field>
+        <field name="digitux_socket">AM5</field>
+        <field name="digitux_ram_type">ddr5</field>
+        <field name="digitux_form_factor">atx</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_short_specs">Placa AM5 robusta con WiFi, VRM potente y foco en estabilidad.</field>
+    </record>
+
+    <record id="product_board_z790_creator" model="product.template">
+        <field name="name">ASUS ProArt Z790-Creator WiFi</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">519.00</field>
+        <field name="standard_price">399.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_creator')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">motherboard</field>
+        <field name="digitux_socket">LGA1700</field>
+        <field name="digitux_ram_type">ddr5</field>
+        <field name="digitux_form_factor">atx</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">Placa creator con Thunderbolt, red 10G y conectividad profesional.</field>
+    </record>
+
+    <record id="product_ram_gskill_64" model="product.template">
+        <field name="name">G.Skill Trident Z5 RGB 64GB DDR5 6400</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">269.00</field>
+        <field name="standard_price">198.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming'), ref('public_category_creator')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">ram</field>
+        <field name="digitux_ram_type">ddr5</field>
+        <field name="digitux_warranty_months">60</field>
+        <field name="digitux_short_specs">Kit 2x32GB DDR5 de alta frecuencia para gaming extremo y produccion.</field>
+    </record>
+
+    <record id="product_ram_kingston_32" model="product.template">
+        <field name="name">Kingston Fury Beast 32GB DDR5 5600</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">119.00</field>
+        <field name="standard_price">83.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_productivity')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">ram</field>
+        <field name="digitux_ram_type">ddr5</field>
+        <field name="digitux_warranty_months">60</field>
+        <field name="digitux_short_specs">Memoria equilibrada para oficina exigente, estudio y equipos AM5/Intel.</field>
+    </record>
+
+    <record id="product_gpu_4080_super" model="product.template">
+        <field name="name">NVIDIA GeForce RTX 4080 SUPER 16GB</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">1199.00</field>
+        <field name="standard_price">964.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming'), ref('public_category_creator')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">gpu</field>
+        <field name="digitux_power_watts">320</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">GPU premium para 4K, render acelerado e IA local de alto rendimiento.</field>
+    </record>
+
+    <record id="product_gpu_4060_ti" model="product.template">
+        <field name="name">NVIDIA GeForce RTX 4060 Ti 16GB</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">499.00</field>
+        <field name="standard_price">395.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">gpu</field>
+        <field name="digitux_power_watts">165</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_short_specs">Opcion versatil para 1080p/1440p con bajo consumo y DLSS.</field>
+    </record>
+
+    <record id="product_storage_sn850x" model="product.template">
+        <field name="name">WD Black SN850X NVMe 2TB</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">169.00</field>
+        <field name="standard_price">126.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming'), ref('public_category_creator')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">storage</field>
+        <field name="digitux_power_watts">8</field>
+        <field name="digitux_warranty_months">60</field>
+        <field name="digitux_short_specs">SSD NVMe rapido para bibliotecas grandes, proyectos y juegos pesados.</field>
+    </record>
+
+    <record id="product_storage_t500" model="product.template">
+        <field name="name">Crucial T500 NVMe 2TB</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">159.00</field>
+        <field name="standard_price">118.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_productivity'), ref('public_category_creator')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">storage</field>
+        <field name="digitux_power_watts">8</field>
+        <field name="digitux_warranty_months">60</field>
+        <field name="digitux_short_specs">Unidad equilibrada para flujo de trabajo intenso y tiempos de carga bajos.</field>
+    </record>
+
+    <record id="product_psu_focus_850" model="product.template">
+        <field name="name">Seasonic Focus GX-850 Gold</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">169.00</field>
+        <field name="standard_price">123.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">psu</field>
+        <field name="digitux_power_watts">850</field>
+        <field name="digitux_form_factor">atx</field>
+        <field name="digitux_warranty_months">120</field>
+        <field name="digitux_short_specs">Fuente Gold modular con reserva para GPUs potentes y upgrades futuros.</field>
+    </record>
+
+    <record id="product_psu_purepower_1000" model="product.template">
+        <field name="name">be quiet! Pure Power 12 M 1000W</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">209.00</field>
+        <field name="standard_price">158.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_creator')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">psu</field>
+        <field name="digitux_power_watts">1000</field>
+        <field name="digitux_form_factor">atx</field>
+        <field name="digitux_warranty_months">120</field>
+        <field name="digitux_short_specs">Fuente ATX 3.0 pensada para estaciones con GPU alta y carga estable.</field>
+    </record>
+
+    <record id="product_case_fractal_north" model="product.template">
+        <field name="name">Fractal Design North XL Charcoal</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">199.00</field>
+        <field name="standard_price">148.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_creator')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">case</field>
+        <field name="digitux_form_factor">fulltower</field>
+        <field name="digitux_warranty_months">24</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">Caja premium con madera, airflow alto y look editorial para setup pro.</field>
+    </record>
+
+    <record id="product_case_4000d" model="product.template">
+        <field name="name">Corsair 4000D Airflow Negra</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">109.00</field>
+        <field name="standard_price">79.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">case</field>
+        <field name="digitux_form_factor">midtower</field>
+        <field name="digitux_warranty_months">24</field>
+        <field name="digitux_short_specs">Caja limpia y ventilada para builds gaming muy faciles de montar.</field>
+    </record>
+
+    <record id="product_monitor_lg_oled" model="product.template">
+        <field name="name">LG UltraGear 27 OLED 240Hz</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">899.00</field>
+        <field name="standard_price">722.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">monitor</field>
+        <field name="digitux_form_factor">peripheral</field>
+        <field name="digitux_warranty_months">24</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">Panel OLED 27 pulgadas y 240Hz para jugar a maximo nivel.</field>
+    </record>
+
+    <record id="product_monitor_proart" model="product.template">
+        <field name="name">ASUS ProArt PA348CGV</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">749.00</field>
+        <field name="standard_price">598.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_creator')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">monitor</field>
+        <field name="digitux_form_factor">peripheral</field>
+        <field name="digitux_warranty_months">36</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">Ultrawide para diseno y video con colorimetria cuidada y USB-C.</field>
+    </record>
+
+    <record id="product_keyboard_keychron_q1" model="product.template">
+        <field name="name">Keychron Q1 Max ISO</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">229.00</field>
+        <field name="standard_price">171.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_streaming'), ref('public_category_productivity')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">keyboard</field>
+        <field name="digitux_form_factor">peripheral</field>
+        <field name="digitux_warranty_months">24</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">Teclado mecanico premium con conexion multiple y gran tacto de escritura.</field>
+    </record>
+
+    <record id="product_keyboard_apexpro" model="product.template">
+        <field name="name">SteelSeries Apex Pro TKL Wireless</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">279.00</field>
+        <field name="standard_price">214.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">keyboard</field>
+        <field name="digitux_form_factor">peripheral</field>
+        <field name="digitux_warranty_months">24</field>
+        <field name="digitux_short_specs">Teclado gaming competitivo con switches ajustables y formato TKL.</field>
+    </record>
+
+    <record id="product_mouse_mxmaster" model="product.template">
+        <field name="name">Logitech MX Master 3S</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">109.00</field>
+        <field name="standard_price">76.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_creator'), ref('public_category_productivity')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">mouse</field>
+        <field name="digitux_form_factor">peripheral</field>
+        <field name="digitux_warranty_months">24</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">Raton de productividad premium con scroll magnetico y botones extra.</field>
+    </record>
+
+    <record id="product_mouse_gpro" model="product.template">
+        <field name="name">Logitech G Pro X Superlight 2</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">169.00</field>
+        <field name="standard_price">121.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_gaming')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">mouse</field>
+        <field name="digitux_form_factor">peripheral</field>
+        <field name="digitux_warranty_months">24</field>
+        <field name="digitux_short_specs">Raton ultraligero para competitivo con sensor de alto nivel.</field>
+    </record>
+
+    <record id="product_accessory_streamdeck" model="product.template">
+        <field name="name">Elgato Stream Deck MK.2</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">159.00</field>
+        <field name="standard_price">117.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_streaming')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">accessory</field>
+        <field name="digitux_form_factor">peripheral</field>
+        <field name="digitux_power_watts">5</field>
+        <field name="digitux_warranty_months">24</field>
+        <field name="digitux_highlight">1</field>
+        <field name="digitux_short_specs">Control rapido para streaming, macros y automatizacion del setup.</field>
+    </record>
+
+    <record id="product_accessory_wavearm" model="product.template">
+        <field name="name">Elgato Wave Mic Arm LP</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">1</field>
+        <field name="detailed_type">product</field>
+        <field name="list_price">99.00</field>
+        <field name="standard_price">72.00</field>
+        <field name="website_published">1</field>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('public_category_streaming')])]"/>
+        <field name="digitux_is_component">1</field>
+        <field name="digitux_component_type">accessory</field>
+        <field name="digitux_form_factor">peripheral</field>
+        <field name="digitux_warranty_months">24</field>
+        <field name="digitux_short_specs">Brazo de micro compacto para escritorios limpios y setup de creador.</field>
+    </record>
+
+    <record id="supplierinfo_cpu_7800x3d" model="product.supplierinfo">
+        <field name="partner_id" ref="partner_vendor_pixelforge"/>
+        <field name="product_tmpl_id" ref="product_cpu_7800x3d"/>
+        <field name="min_qty">1</field>
+        <field name="price">344.00</field>
+    </record>
+
+    <record id="supplierinfo_board_z790_creator" model="product.supplierinfo">
+        <field name="partner_id" ref="partner_vendor_creatorhub"/>
+        <field name="product_tmpl_id" ref="product_board_z790_creator"/>
+        <field name="min_qty">1</field>
+        <field name="price">399.00</field>
+    </record>
+
+    <record id="supplierinfo_gpu_4080_super" model="product.supplierinfo">
+        <field name="partner_id" ref="partner_vendor_pixelforge"/>
+        <field name="product_tmpl_id" ref="product_gpu_4080_super"/>
+        <field name="min_qty">1</field>
+        <field name="price">964.00</field>
+    </record>
+
+    <record id="supplierinfo_monitor_proart" model="product.supplierinfo">
+        <field name="partner_id" ref="partner_vendor_creatorhub"/>
+        <field name="product_tmpl_id" ref="product_monitor_proart"/>
+        <field name="min_qty">1</field>
+        <field name="price">598.00</field>
+    </record>
+
+    <record id="supplierinfo_streamdeck" model="product.supplierinfo">
+        <field name="partner_id" ref="partner_vendor_peripheralworks"/>
+        <field name="product_tmpl_id" ref="product_accessory_streamdeck"/>
+        <field name="min_qty">1</field>
+        <field name="price">117.00</field>
+    </record>
+</odoo>

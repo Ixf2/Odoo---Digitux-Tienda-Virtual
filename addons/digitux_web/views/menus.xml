@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_digitux_root" name="Digitux" sequence="35" web_icon="digitux_web,static/description/icon.png"/>
+
+    <menuitem id="menu_digitux_operations" name="Operaciones" parent="menu_digitux_root" sequence="10"/>
+    <menuitem id="menu_digitux_pc_build" name="Configurador PC" parent="menu_digitux_operations" action="action_digitux_pc_build" sequence="10"/>
+    <menuitem id="menu_digitux_rma" name="RMA / Garantias" parent="menu_digitux_operations" action="action_digitux_rma" sequence="20"/>
+    <menuitem id="menu_digitux_price_alert" name="Alertas de precio" parent="menu_digitux_operations" action="action_digitux_price_alert" sequence="30"/>
+    <menuitem id="menu_digitux_stock_alert" name="Alertas de stock" parent="menu_digitux_operations" action="action_digitux_stock_alert" sequence="40"/>
+
+    <menuitem id="menu_digitux_catalog" name="Catalogo" parent="menu_digitux_root" sequence="20"/>
+    <menuitem id="menu_digitux_products" name="Productos tecnicos" parent="menu_digitux_catalog" action="action_digitux_products" sequence="10"/>
+
+    <record id="website_menu_digitux_home" model="website.menu">
+        <field name="name">Digitux</field>
+        <field name="url">/digitux</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">40</field>
+    </record>
+    <record id="website_menu_digitux_configurator" model="website.menu">
+        <field name="name">Configura tu PC</field>
+        <field name="url">/digitux/configurador</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">41</field>
+    </record>
+    <record id="website_menu_digitux_compare" model="website.menu">
+        <field name="name">Comparador</field>
+        <field name="url">/digitux/comparador</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">42</field>
+    </record>
+    <record id="website_menu_digitux_rma" model="website.menu">
+        <field name="name">Garantia/RMA</field>
+        <field name="url">/digitux/rma</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">43</field>
+    </record>
+    <record id="website_menu_digitux_support" model="website.menu">
+        <field name="name">Soporte</field>
+        <field name="url">/digitux/soporte</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">44</field>
+    </record>
+</odoo>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_digitux_purchase_root"
+              name="Digitux Compras"
+              sequence="37"
+              web_icon="digitux_web,static/description/icon.png"
+              action="digitux_web.action_digitux_purchase_request"/>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_template_form_digitux" model="ir.ui.view">
+        <field name="name">product.template.form.digitux</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Digitux Tech" name="digitux_tech">
+                    <group>
+                        <group string="Web y configurador">
+                            <field name="digitux_is_component"/>
+                            <field name="digitux_component_type" invisible="not digitux_is_component"/>
+                            <field name="digitux_highlight" invisible="not digitux_is_component"/>
+                            <field name="digitux_warranty_months" invisible="not digitux_is_component"/>
+                        </group>
+                        <group string="Compatibilidad">
+                            <field name="digitux_socket" invisible="not digitux_is_component"/>
+                            <field name="digitux_ram_type" invisible="not digitux_is_component"/>
+                            <field name="digitux_form_factor" invisible="not digitux_is_component"/>
+                            <field name="digitux_power_watts" invisible="not digitux_is_component"/>
+                        </group>
+                    </group>
+                    <group string="Texto para la web">
+                        <field name="digitux_short_specs" nolabel="1" placeholder="Resumen técnico visible en la web"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_digitux_products" model="ir.actions.act_window">
+        <field name="name">Productos técnicos Digitux</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('digitux_is_component', '=', True)]</field>
+        <field name="context">{'default_digitux_is_component': True, 'default_sale_ok': True, 'default_purchase_ok': True, 'default_detailed_type': 'product'}</field>
+    </record>
+</odoo>
